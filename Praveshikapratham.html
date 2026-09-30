@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>भारतीय संगीत प्रश्नावली - भाग 2</title>
+
+<style>
+
+/* =====================================
+   BASIC RESET
+===================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 35px 15px;
+
+    font-family: "Noto Serif Devanagari", Georgia, serif;
+
+    background:
+    url("file:///C:/Users/Admin/Desktop/VSCODE/FP/backgroundimg.jpg");; center top/cover fixed no-repeat;
+  filter:saturate(.82);
+        linear-gradient(
+            rgba(55, 25, 8, 0.35),
+            rgba(55, 25, 8, 0.55)
+        ),
+        url("music-theme.jpg");
+
+    background-size: cover;
+    background-position: top center;
+    background-attachment: fixed;
+
+    color: #3d210d;
+}
+
+
+/* =====================================
+   MAIN CONTAINER
+===================================== */
+
+.container {
+    max-width: 900px;
+    margin: auto;
+}
+
+
+/* =====================================
+   HEADER
+===================================== */
+
+.header {
+    text-align: center;
+
+    padding: 35px 20px;
+    margin-bottom: 25px;
+
+    background:
+        linear-gradient(
+            rgba(91, 45, 15, 0.90),
+            rgba(58, 27, 8, 0.90)
+        );
+
+    border: 2px solid #d6a84f;
+    border-radius: 18px;
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,.55),
+        inset 0 0 30px rgba(255,200,80,.08);
+}
+
+.header h1 {
+    margin: 0;
+
+    color: #f6d477;
+
+    font-size: 38px;
+
+    text-shadow: 0 2px 5px #000;
+}
+
+.header p {
+    color: #e8c98a;
+    font-size: 17px;
+}
+
+.decor {
+    width: 75%;
+    height: 2px;
+
+    margin: 18px auto;
+
+    background: linear-gradient(
+        to right,
+        transparent,
+        #d8ae59,
+        #fff0b0,
+        #d8ae59,
+        transparent
+    );
+
+    position: relative;
+}
+
+.decor::after {
+    content: "✦";
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -55%);
+
+    background: #63310f;
+
+    padding: 0 10px;
+
+    color: #f3d27b;
+}
+
+
+/* =====================================
+   SCORE
+===================================== */
+
+.score-box {
+    position: sticky;
+    top: 12px;
+
+    z-index: 20;
+
+    text-align: center;
+
+    padding: 13px;
+    margin-bottom: 25px;
+
+    background: rgba(54,25,7,.95);
+
+    border: 1px solid #d6a84f;
+
+    border-radius: 30px;
+
+    color: #ead095;
+
+    box-shadow: 0 5px 20px rgba(0,0,0,.45);
+}
+
+.score-box span {
+    color: #ffd86a;
+
+    font-size: 24px;
+
+    font-weight: bold;
+}
+
+
+/* =====================================
+   QUESTION CARD
+===================================== */
+
+.question {
+    position: relative;
+
+    padding: 25px 27px;
+
+    margin-bottom: 25px;
+
+    background:
+        linear-gradient(
+            rgba(245,218,159,.95),
+            rgba(210,165,91,.95)
+        );
+
+    border: 2px solid #a96f25;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.45),
+        inset 0 0 20px rgba(100,45,5,.15);
+
+    overflow: hidden;
+}
+
+.question::before {
+    content: "❈";
+
+    position: absolute;
+
+    top: 8px;
+    right: 12px;
+
+    color: rgba(117,69,20,.35);
+
+    font-size: 24px;
+}
+
+.question h3 {
+    margin: 0 25px 18px 0;
+
+    color: #4b260d;
+
+    font-size: 19px;
+
+    line-height: 1.6;
+}
+
+
+/* =====================================
+   OPTIONS
+===================================== */
+
+.option {
+    width: 100%;
+
+    display: block;
+
+    margin: 9px 0;
+    padding: 13px 16px;
+
+    border: 1px solid #a87532;
+    border-radius: 9px;
+
+    background: rgba(255,245,216,.75);
+
+    color: #42240f;
+
+    text-align: left;
+
+    font-family: inherit;
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition:
+        transform .2s,
+        background .2s,
+        box-shadow .2s;
+}
+
+.option:hover:not(:disabled) {
+    transform: translateX(5px);
+
+    background: rgba(255,250,230,.95);
+
+    box-shadow:
+        0 4px 12px rgba(82,42,8,.25);
+}
+
+
+/* =====================================
+   CORRECT ANSWER
+===================================== */
+
+.option.correct {
+    background: #b9d99b !important;
+
+    border-color: #47752b !important;
+
+    color: #234514 !important;
+
+    font-weight: bold;
+
+    box-shadow:
+        0 0 12px rgba(63,110,30,.35);
+}
+
+
+/* =====================================
+   WRONG ANSWER
+===================================== */
+
+.option.wrong {
+    background: #d9957c !important;
+
+    border-color: #873c28 !important;
+
+    color: #651d0e !important;
+
+    font-weight: bold;
+}
+
+
+/* =====================================
+   DISABLED OPTIONS
+===================================== */
+
+.option:disabled {
+    cursor: not-allowed;
+}
+
+
+/* =====================================
+   FEEDBACK
+===================================== */
+
+.feedback {
+    min-height: 25px;
+
+    margin: 15px 0 0;
+
+    font-size: 17px;
+
+    font-weight: bold;
+}
+
+.correct-text {
+    color: #316d18;
+}
+
+.wrong-text {
+    color: #8b2412;
+}
+
+
+/* =====================================
+   FINAL RESULT
+===================================== */
+
+#finalResult {
+    display: none;
+
+    text-align: center;
+
+    margin-top: 35px;
+    padding: 35px 20px;
+
+    background:
+        linear-gradient(
+            rgba(74,35,9,.97),
+            rgba(45,20,5,.97)
+        );
+
+    border: 2px solid #d6a84f;
+
+    border-radius: 18px;
+
+    color: #f4d68c;
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,.6);
+}
+
+#finalResult h2 {
+    margin-top: 0;
+
+    color: #f5d476;
+
+    font-size: 31px;
+}
+
+.final-score {
+    margin: 15px 0;
+
+    color: #ffd968;
+
+    font-size: 48px;
+
+    font-weight: bold;
+}
+
+#finalMessage {
+    font-size: 18px;
+}
+
+
+/* =====================================
+   RESTART
+===================================== */
+
+.restart {
+    margin-top: 18px;
+
+    padding: 13px 30px;
+
+    border: 1px solid #e6bd62;
+
+    border-radius: 25px;
+
+    background:
+        linear-gradient(
+            #e8bd5d,
+            #b47a25
+        );
+
+    color: #351a07;
+
+    font-family: inherit;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.restart:hover {
+    background:
+        linear-gradient(
+            #f4d278,
+            #c58c35
+        );
+}
+
+
+/* =====================================
+   MOBILE
+===================================== */
+
+@media(max-width:600px) {
+
+    body {
+        padding: 18px 10px;
+    }
+
+    .header {
+        padding: 25px 12px;
+    }
+
+    .header h1 {
+        font-size: 28px;
+    }
+
+    .header p {
+        font-size: 14px;
+    }
+
+    .question {
+        padding: 20px 17px;
+    }
+
+    .question h3 {
+        font-size: 17px;
+    }
+
+    .option {
+        font-size: 15px;
+        padding: 12px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="container">
+
+
+<!-- =====================================
+     HEADER
+===================================== -->
+
+<div class="header">
+
+    <h1>🪔 भारतीय संगीत प्रश्नावली प्रवेशिका प्रथम 🎵</h1>
+
+    <div class="decor"></div>
+
+    <p>
+        भाग – 2
+    </p>
+
+    <p>
+        30 प्रश्न • तुरंत अपना उत्तर जाँचें
+    </p>
+
+</div>
+
+
+<!-- =====================================
+     SCORE
+===================================== -->
+
+<div class="score-box">
+
+    आपका Score:
+    <span id="score">0</span>
+    / 30
+
+</div>
+
+
+<!-- =====================================
+     QUIZ
+===================================== -->
+
+<div id="quiz"></div>
+
+
+<!-- =====================================
+     FINAL RESULT
+===================================== -->
+
+<div id="finalResult">
+
+    <h2>✦ प्रश्नावली पूर्ण ✦</h2>
+
+    <div class="decor"></div>
+
+    <div class="final-score">
+        <span id="finalScore">0</span> / 30
+    </div>
+
+    <p id="finalMessage"></p>
+
+    <button class="restart" onclick="location.reload()">
+        🔄 पुनः प्रयास करें
+    </button>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* =====================================
+   QUESTION DATA
+===================================== */
+
+const questions = [
+
+{
+    q: "राग को परिभाषित करने वाले तत्वों में कौन शामिल नहीं है?",
+    options: [
+        "आरोह-अवरोह",
+        "वादी-संवादी",
+        "पकड़",
+        "तबले की डुगडुगी"
+    ],
+    answer: 3
+},
+
+{
+    q: "राग भूपाली किस थाट से उत्पन्न है?",
+    options: [
+        "कल्याण",
+        "बिलावल",
+        "खमाज",
+        "काफी"
+    ],
+    answer: 0
+},
+
+{
+    q: "राग भूपाली में कितने स्वर लगते हैं?",
+    options: [
+        "5",
+        "6",
+        "7",
+        "4"
+    ],
+    answer: 0
+},
+
+{
+    q: "राग यमन का वादी स्वर कौन सा है?",
+    options: [
+        "सा",
+        "ग",
+        "प",
+        "नि"
+    ],
+    answer: 1
+},
+
+{
+    q: "राग भैरव के थाट का नाम क्या है?",
+    options: [
+        "भैरव थाट",
+        "आसावरी थाट",
+        "भैरवी थाट",
+        "पूर्वी थाट"
+    ],
+    answer: 0
+},
+
+{
+    q: "राग भैरव में कौन से स्वर कोमल हैं?",
+    options: [
+        "रे, ध",
+        "ग, नि",
+        "म, प",
+        "सभी शुद्ध"
+    ],
+    answer: 0
+},
+
+{
+    q: "राग काफी में कौन सा स्वर कोमल होता है?",
+    options: [
+        "रे और ध",
+        "ग और नि",
+        "म तीव्र",
+        "प"
+    ],
+    answer: 1
+},
+
+{
+    q: "राग खमाज किस जाति का राग है?",
+    options: [
+        "औडव-औडव",
+        "षाडव-संपूर्ण",
+        "संपूर्ण-संपूर्ण",
+        "औडव-संपूर्ण"
+    ],
+    answer: 1
+},
+
+{
+    q: "जाति के कितने प्रकार माने जाते हैं?",
+    options: [
+        "3",
+        "5",
+        "7",
+        "9"
+    ],
+    answer: 1
+},
+
+{
+    q: "'औडव' जाति में राग में कितने स्वर होते हैं?",
+    options: [
+        "4",
+        "5",
+        "6",
+        "7"
+    ],
+    answer: 1
+},
+
+{
+    q: "'षाडव' जाति में राग में कितने स्वर होते हैं?",
+    options: [
+        "5",
+        "6",
+        "7",
+        "4"
+    ],
+    answer: 1
+},
+
+{
+    q: "'संपूर्ण' जाति में राग में कितने स्वर होते हैं?",
+    options: [
+        "5",
+        "6",
+        "7",
+        "8"
+    ],
+    answer: 2
+},
+
+{
+    q: "राग की 'पकड़' किसे कहते हैं?",
+    options: [
+        "राग का समय",
+        "राग की वह विशिष्ट स्वर-रचना जिससे राग पहचाना जाए",
+        "राग का वादी स्वर",
+        "राग की जाति"
+    ],
+    answer: 1
+},
+
+{
+    q: "'वर्जित स्वर' का अर्थ है?",
+    options: [
+        "राग में प्रयुक्त प्रधान स्वर",
+        "राग में न लगने वाला स्वर",
+        "संवादी स्वर",
+        "ताल का प्रथम स्वर"
+    ],
+    answer: 1
+},
+
+{
+    q: "एकताल में कुल कितनी मात्राएं होती हैं?",
+    options: [
+        "10",
+        "12",
+        "14",
+        "16"
+    ],
+    answer: 1
+},
+
+{
+    q: "एकताल में विभाग कितने होते हैं?",
+    options: [
+        "4",
+        "6",
+        "8",
+        "2"
+    ],
+    answer: 1
+},
+
+{
+    q: "झपताल में कुल कितनी मात्राएं होती हैं?",
+    options: [
+        "8",
+        "10",
+        "12",
+        "14"
+    ],
+    answer: 1
+},
+
+{
+    q: "झपताल में खाली किस मात्रा पर आती है?",
+    options: [
+        "पहली",
+        "तीसरी",
+        "चौथी",
+        "आठवीं"
+    ],
+    answer: 2
+},
+
+{
+    q: "रूपक ताल में कुल कितनी मात्राएं होती हैं?",
+    options: [
+        "6",
+        "7",
+        "8",
+        "10"
+    ],
+    answer: 1
+},
+
+{
+    q: "रूपक ताल की विशेषता क्या है?",
+    options: [
+        "सम पर ताली",
+        "प्रथम मात्रा पर खाली (सम की जगह खाली से आरंभ)",
+        "कोई खाली नहीं होता",
+        "16 मात्राएं"
+    ],
+    answer: 1
+},
+
+{
+    q: "ठाह लय किसे कहते हैं?",
+    options: [
+        "द्रुत लय",
+        "मूल/विलंबित ठहराव वाली लय",
+        "अति द्रुत लय",
+        "मध्य लय की दुगुनी"
+    ],
+    answer: 1
+},
+
+{
+    q: "'तिहाई' किसे कहते हैं?",
+    options: [
+        "एक बोल की तीन बार आवृत्ति जो सम पर समाप्त हो",
+        "तीन तालों का मिश्रण",
+        "तीन मात्राओं की रचना",
+        "तीन राग का सम्मिश्रण"
+    ],
+    answer: 0
+},
+
+{
+    q: "ख्याल गायकी में मुख्यतः कितने अंग होते हैं?",
+    options: [
+        "स्थायी-अंतरा",
+        "आलाप और तान",
+        "दोनों a और b शामिल",
+        "केवल तराना"
+    ],
+    answer: 2
+},
+
+{
+    q: "'तराना' गायन शैली की विशेषता क्या है?",
+    options: [
+        "शुद्ध सरगम में गाया जाता है",
+        "निरर्थक बोलों में गाया जाता है",
+        "केवल आलाप में गाया जाता है",
+        "राग विहीन गायन है"
+    ],
+    answer: 1
+},
+
+{
+    q: "पंडित विष्णु नारायण भातखंडे का संगीत में मुख्य योगदान क्या था?",
+    options: [
+        "तबला वादन",
+        "थाट-राग पद्धति व स्वरलिपि प्रणाली का विकास",
+        "सितार वादन",
+        "नृत्य कला"
+    ],
+    answer: 1
+},
+
+{
+    q: "पंडित विष्णु दिगंबर पलुस्कर का योगदान किससे संबंधित है?",
+    options: [
+        "गांधर्व महाविद्यालय की स्थापना व संगीत शिक्षा का प्रसार",
+        "तबला निर्माण",
+        "पाश्चात्य संगीत",
+        "चित्रकला"
+    ],
+    answer: 0
+},
+
+{
+    q: "मियां तानसेन किसके दरबारी संगीतज्ञ थे?",
+    options: [
+        "शाहजहां",
+        "अकबर",
+        "औरंगजेब",
+        "जहांगीर"
+    ],
+    answer: 1
+},
+
+{
+    q: "स्वामी हरिदास किस घराने/परंपरा से संबंधित माने जाते हैं?",
+    options: [
+        "ध्रुपद परंपरा",
+        "कव्वाली",
+        "ठुमरी",
+        "पाश्चात्य संगीत"
+    ],
+    answer: 0
+},
+
+{
+    q: "सितार किस वाद्य वर्ग में आता है?",
+    options: [
+        "सुषिर वाद्य",
+        "तत् वाद्य",
+        "अवनद्ध वाद्य",
+        "घन वाद्य"
+    ],
+    answer: 1
+},
+
+{
+    q: "बांसुरी किस वाद्य वर्ग में आती है?",
+    options: [
+        "तत् वाद्य",
+        "सुषिर वाद्य",
+        "अवनद्ध वाद्य",
+        "घन वाद्य"
+    ],
+    answer: 1
+}
+
+];
+
+
+/* =====================================
+   CREATE QUESTIONS
+===================================== */
+
+const quiz = document.getElementById("quiz");
+
+questions.forEach((question, index) => {
+
+    const card = document.createElement("div");
+
+    card.className = "question";
+
+    card.innerHTML = `
+
+        <h3>
+            ${index + 1}. ${question.q}
+        </h3>
+
+        ${question.options.map((option, i) => `
+
+            <button
+                class="option"
+                onclick="checkAnswer(
+                    this,
+                    ${i},
+                    ${question.answer}
+                )">
+
+                ${String.fromCharCode(97 + i)}) ${option}
+
+            </button>
+
+        `).join("")}
+
+        <p class="feedback"></p>
+    `;
+
+    quiz.appendChild(card);
+});
+
+
+/* =====================================
+   SCORE VARIABLES
+===================================== */
+
+let score = 0;
+let answered = 0;
+
+
+/* =====================================
+   CHECK ANSWER IMMEDIATELY
+===================================== */
+
+function checkAnswer(button, selected, correct) {
+
+    const questionCard =
+        button.parentElement;
+
+
+    /* Prevent changing answer */
+
+    if (questionCard.dataset.answered === "true") {
+        return;
+    }
+
+    questionCard.dataset.answered = "true";
+
+
+    const buttons =
+        questionCard.querySelectorAll(".option");
+
+    const feedback =
+        questionCard.querySelector(".feedback");
+
+
+    /* Disable all options */
+
+    buttons.forEach(btn => {
+        btn.disabled = true;
+    });
+
+
+    /* =================================
+       CORRECT
+    ================================= */
+
+    if (selected === correct) {
+
+        button.classList.add("correct");
+
+        feedback.innerHTML =
+            "✅ सही उत्तर! बहुत बढ़िया!";
+
+        feedback.classList.add(
+            "correct-text"
+        );
+
+        score++;
+
+    }
+
+
+    /* =================================
+       WRONG
+    ================================= */
+
+    else {
+
+        button.classList.add("wrong");
+
+        buttons[correct].classList.add(
+            "correct"
+        );
+
+        feedback.innerHTML =
+            "❌ गलत उत्तर! सही उत्तर हरे रंग में है।";
+
+        feedback.classList.add(
+            "wrong-text"
+        );
+
+    }
+
+
+    /* Update score */
+
+    document.getElementById("score")
+        .innerText = score;
+
+
+    answered++;
+
+
+    /* =================================
+       ALL QUESTIONS COMPLETE
+    ================================= */
+
+    if (answered === questions.length) {
+
+        setTimeout(showResult, 700);
+
+    }
+
+}
+
+
+/* =====================================
+   FINAL RESULT
+===================================== */
+
+function showResult() {
+
+    const result =
+        document.getElementById(
+            "finalResult"
+        );
+
+    const finalScore =
+        document.getElementById(
+            "finalScore"
+        );
+
+    const finalMessage =
+        document.getElementById(
+            "finalMessage"
+        );
+
+
+    finalScore.innerText = score;
+
+
+    if (score === 30) {
+
+        finalMessage.innerHTML =
+            "🔥 <b>अद्भुत!</b><br>" +
+            "Perfect Score! भारतीय संगीत पर आपकी पकड़ शानदार है।";
+
+    }
+
+    else if (score >= 27) {
+
+        finalMessage.innerHTML =
+            "🏆 <b>Excellent!</b><br>" +
+            "आपकी तैयारी लगभग Perfect है।";
+
+    }
+
+    else if (score >= 24) {
+
+        finalMessage.innerHTML =
+            "👏 <b>बहुत बढ़िया!</b><br>" +
+            "बस थोड़ा सा revision और करें।";
+
+    }
+
+    else if (score >= 18) {
+
+        finalMessage.innerHTML =
+            "🎵 <b>अच्छा प्रयास!</b><br>" +
+            "कुछ important topics फिर से revise करें।";
+
+    }
+
+    else {
+
+        finalMessage.innerHTML =
+            "🪔 <b>कोई बात नहीं!</b><br>" +
+            "Topics revise करें और फिर से कोशिश करें।";
+
+    }
+
+
+    result.style.display = "block";
+
+
+    result.scrollIntoView({
+        behavior: "smooth"
+    });
+
+}
+
+</script>
+
+</body>
+</html>

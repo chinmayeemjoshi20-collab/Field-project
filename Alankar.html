@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Indian Classical Music Quiz - Set 8</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 20px;
+    font-family: "Segoe UI", Arial, sans-serif;
+
+    background:
+    url("file:///C:/Users/Admin/Desktop/VSCODE/FP/backgroundimg.jpg");; center top/cover fixed no-repeat;
+  filter:saturate(.82);
+        linear-gradient(rgba(45, 25, 10, 0.72), rgba(45, 25, 10, 0.72)),
+        url("music-theme.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+
+    color: #3b2414;
+}
+
+/* HEADER */
+
+.header {
+    max-width: 1000px;
+    margin: auto;
+    padding: 25px;
+
+    text-align: center;
+
+    background: linear-gradient(135deg, #3a1f0d, #5b3217);
+
+    border: 2px solid #d4af37;
+    border-radius: 18px;
+
+    box-shadow: 0 8px 25px rgba(0,0,0,0.45);
+}
+
+.header h1 {
+    margin: 0;
+    color: #f5d76e;
+    font-size: 30px;
+}
+
+.header p {
+    color: #f4e5bd;
+    margin-top: 8px;
+}
+
+/* SCORE */
+
+.score-box {
+    max-width: 1000px;
+    margin: 15px auto;
+    padding: 14px;
+
+    text-align: center;
+
+    background: rgba(58, 31, 13, 0.95);
+    color: #f5d76e;
+
+    border: 2px solid #d4af37;
+    border-radius: 12px;
+
+    font-size: 20px;
+    font-weight: bold;
+
+    position: sticky;
+    top: 10px;
+    z-index: 10;
+
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+}
+
+/* QUIZ */
+
+#quiz {
+    max-width: 1000px;
+    margin: auto;
+}
+
+/* QUESTION CARD */
+
+.question {
+    margin: 20px 0;
+    padding: 22px;
+
+    background:
+        linear-gradient(
+            rgba(255,248,225,0.95),
+            rgba(245,225,180,0.95)
+        );
+
+    border: 2px solid #a87532;
+    border-radius: 16px;
+
+    box-shadow: 0 7px 18px rgba(0,0,0,0.35);
+}
+
+.question h3 {
+    margin-top: 0;
+    color: #542d13;
+    font-size: 19px;
+}
+
+/* OPTIONS */
+
+.option {
+    display: block;
+    width: 100%;
+
+    margin: 10px 0;
+    padding: 13px 16px;
+
+    text-align: left;
+
+    font-size: 16px;
+    color: #3b2414;
+
+    background: #fffaf0;
+
+    border: 2px solid #b88a52;
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.option:hover {
+    background: #f3dfb5;
+    transform: translateX(4px);
+}
+
+/* CORRECT */
+
+.option.correct {
+    background: #b8dfb8 !important;
+    border-color: #347a34 !important;
+    color: #164d16 !important;
+    font-weight: bold;
+}
+
+/* WRONG */
+
+.option.wrong {
+    background: #edb5a8 !important;
+    border-color: #a63c2f !important;
+    color: #701c14 !important;
+    font-weight: bold;
+}
+
+.option:disabled {
+    cursor: default;
+}
+
+/* FEEDBACK */
+
+.feedback {
+    margin-top: 12px;
+    padding: 10px;
+
+    font-size: 17px;
+    font-weight: bold;
+
+    border-radius: 8px;
+}
+
+/* RESULT */
+
+#result {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 30px;
+
+    text-align: center;
+
+    background: rgba(58, 31, 13, 0.95);
+    color: #f5d76e;
+
+    border: 2px solid #d4af37;
+    border-radius: 18px;
+
+    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+
+    display: none;
+}
+
+/* RESTART */
+
+.restart {
+    margin-top: 15px;
+    padding: 12px 25px;
+
+    background: #d4af37;
+    color: #3a1f0d;
+
+    border: none;
+    border-radius: 10px;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.restart:hover {
+    background: #f0cf58;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>🎶भारतीय संगीत प्रश्नावली अलंकार </h1>
+    <p>Set 8 • 30 Questions</p>
+</div>
+
+<div class="score-box">
+    Score:
+    <span id="score">0</span>
+    /
+    <span id="total">30</span>
+</div>
+
+<div id="quiz"></div>
+
+<div id="result">
+
+    <h2>🎵 Quiz Completed!</h2>
+
+    <h3 id="finalScore"></h3>
+
+    <p id="message"></p>
+
+    <button class="restart" onclick="location.reload()">
+        🔄 Restart Quiz
+    </button>
+
+</div>
+
+<script>
+
+const questions = [
+
+{
+q: "राग जयजयवंती किस थाट से संबंधित है और इसकी विशेषता क्या है?",
+options: [
+"खमाज थाट, दोनों निषाद व दोनों गंधार का सुंदर प्रयोग",
+"भैरव थाट",
+"तोड़ी थाट",
+"मारवा थाट"
+],
+answer: 0
+},
+
+{
+q: "राग पटदीप और राग देस में मुख्य अंतर किस स्वर के प्रयोग से स्पष्ट होता है?",
+options: [
+"पटदीप में शुद्ध गंधार का प्रयोग, देस में कोमल गंधार की छाया प्रयुक्त होती है",
+"दोनों समान राग हैं",
+"पटदीप रात्रि राग है",
+"देस में पंचम वर्जित है"
+],
+answer: 0
+},
+
+{
+q: "राग बसंत बहार दो रागों के मेल से बना 'जोड़ राग' है — वे दो राग कौन से हैं?",
+options: [
+"बसंत और बहार",
+"भैरव और बहार",
+"बसंत और मल्हार",
+"हिंडोल और बहार"
+],
+answer: 0
+},
+
+{
+q: "राग शहाना किस थाट से संबंधित है और यह किस समय गाया जाता है?",
+options: [
+"काफी थाट, मध्यरात्रि",
+"भैरव थाट, प्रातः",
+"कल्याण थाट, संध्या",
+"मारवा थाट, सायं"
+],
+answer: 0
+},
+
+{
+q: "आधुनिक अनुसंधान में 'तान-गणित' (Combinatorial permutation of swaras) किस प्राचीन अवधारणा से जुड़ा है?",
+options: [
+"प्रस्तार सिद्धांत (स्वरों के क्रमचय-संचय की गणना)",
+"रस सिद्धांत",
+"थाट सिद्धांत",
+"ग्राम सिद्धांत"
+],
+answer: 0
+},
+
+{
+q: "'खंडमेरु प्रस्तार' पद्धति का प्रयोग प्राचीन संगीत शास्त्र में किसलिए होता था?",
+options: [
+"दी गई स्वर-संख्या से संभावित सभी क्रमचय (permutations) की गणना हेतु",
+"राग के समय निर्धारण हेतु",
+"ताल की गति नापने हेतु",
+"वाद्य के आकार मापने हेतु"
+],
+answer: 0
+},
+
+{
+q: "सात स्वरों से बनने वाले कुल संभावित संपूर्ण जाति रागों (सभी सात स्वर प्रयुक्त, क्रम भिन्न) की सैद्धांतिक अधिकतम संख्या (7 factorial के आधार पर) कितनी मानी जाती है?",
+options: [
+"5040",
+"720",
+"49",
+"84"
+],
+answer: 0
+},
+
+{
+q: "'गीतिकाव्य' और 'बंदिश-रचना' की तुलनात्मक दृष्टि से 'मात्रा-वृत्त संतुलन' किस बात पर बल देता है?",
+options: [
+"काव्य के शब्दों व ताल की मात्राओं के बीच उचित सामंजस्य",
+"केवल राग पर",
+"केवल गायक की आवाज़ पर",
+"केवल वाद्य संगत पर"
+],
+answer: 0
+},
+
+{
+q: "तुलनात्मक संगीतशास्त्र (Comparative Musicology) में हिंदुस्तानी व पाश्चात्य संगीत की स्वर-व्यवस्था में मूल अंतर क्या माना गया है?",
+options: [
+"भारतीय पद्धति में श्रुति-आधारित सूक्ष्म स्वर-भेद, पाश्चात्य में समस्वरित (equal temperament) 12-स्वर व्यवस्था",
+"दोनों समान हैं",
+"पाश्चात्य में कोई सप्तक नहीं होता",
+"भारतीय पद्धति में कोई थाट नहीं होता"
+],
+answer: 0
+},
+
+{
+q: "'जस्ट इंटोनेशन' (Just Intonation) सिद्धांत भारतीय शास्त्रीय संगीत के किस पक्ष से मेल खाता प्रतीत होता है?",
+options: [
+"श्रुति के अनुपातिक (गणितीय अनुपात आधारित) स्वर-निर्धारण से",
+"पाश्चात्य समस्वरण से",
+"केवल ताल से",
+"केवल वाद्य निर्माण से"
+],
+answer: 0
+},
+
+{
+q: "संगीत शिक्षण पद्धति में 'सूक्ष्म से स्थूल' (Simple to Complex) सिद्धांत किस उद्देश्य से अपनाया जाता है?",
+options: [
+"विद्यार्थी की क्रमिक व सुव्यवस्थित सीखने की क्षमता विकसित करने हेतु",
+"केवल परीक्षा उत्तीर्ण करने हेतु",
+"केवल प्रदर्शन हेतु",
+"कोई विशेष उद्देश्य नहीं"
+],
+answer: 0
+},
+
+{
+q: "संगीत में 'सौंदर्यशास्त्र' (Aesthetics/Saundarya Shastra) का अध्ययन मुख्यतः किस पर केंद्रित होता है?",
+options: [
+"कला में सौंदर्य, रस-निष्पत्ति व श्रोता पर पड़ने वाले प्रभाव का दार्शनिक विश्लेषण",
+"केवल तकनीकी स्वर-ज्ञान",
+"केवल ताल-गणना",
+"केवल वाद्य निर्माण विधि"
+],
+answer: 0
+},
+
+{
+q: "अभिनवगुप्त द्वारा प्रतिपादित 'रसास्वादन' सिद्धांत मूलतः किस ग्रंथ की टीका से संबंधित है?",
+options: [
+"नाट्यशास्त्र की टीका (अभिनवभारती)",
+"संगीत रत्नाकर की टीका",
+"राग दर्पण की टीका",
+"स्वरमेलकलानिधि की टीका"
+],
+answer: 0
+},
+
+{
+q: "संगीत में 'ध्वन्यात्मक विश्लेषण' (Acoustic Spectral Analysis) आधुनिक शोध में किसके अध्ययन हेतु प्रयुक्त होता है?",
+options: [
+"स्वर की गुणवत्ता (timbre), आवृत्ति व हार्मोनिक्स की वैज्ञानिक जांच",
+"केवल राग के इतिहास हेतु",
+"केवल वाद्य की कीमत आंकने हेतु",
+"केवल गायक की जीवनी हेतु"
+],
+answer: 0
+},
+
+{
+q: "'राग वर्गीकरण के आधुनिक शोध-आधारित प्रयास' किस उद्देश्य से किए जाते हैं?",
+options: [
+"पारंपरिक थाट पद्धति की सीमाओं का वैज्ञानिक व कम्प्यूटेशनल विश्लेषण",
+"पुराने ग्रंथों को नष्ट करने हेतु",
+"केवल परीक्षा प्रश्न बनाने हेतु",
+"कोई उद्देश्य नहीं"
+],
+answer: 0
+},
+
+{
+q: "'एथ्नोम्यूज़िकोलॉजी' (Ethnomusicology) किस क्षेत्र का अध्ययन करती है?",
+options: [
+"विभिन्न संस्कृतियों के संगीत का सामाजिक-सांस्कृतिक संदर्भ में अध्ययन",
+"केवल शास्त्रीय संगीत का तकनीकी अध्ययन",
+"केवल वाद्य निर्माण",
+"केवल पाश्चात्य संगीत"
+],
+answer: 0
+},
+
+{
+q: "'संगीत में शोध पद्धति' (Research Methodology) में 'प्राथमिक स्रोत' (Primary Source) का उदाहरण क्या हो सकता है?",
+options: [
+"मूल प्राचीन पांडुलिपि या समकालीन साक्षात्कार",
+"किसी अन्य लेखक की समीक्षा पुस्तक",
+"विकिपीडिया लेख",
+"पाठ्यपुस्तक सारांश"
+],
+answer: 0
+},
+
+{
+q: "भारतीय संगीत के इतिहास में 'वैदिक संगीत' (सामगान) को किस रूप में देखा जाता है?",
+options: [
+"भारतीय शास्त्रीय संगीत की प्राचीनतम ज्ञात जड़ें",
+"आधुनिक फ्यूज़न संगीत का आधार",
+"केवल लोक संगीत का रूप",
+"पाश्चात्य संगीत से प्रभावित रूप"
+],
+answer: 0
+},
+
+{
+q: "'सामगान' में स्वरों की संख्या व नाम किस प्राचीन परंपरा से जुड़े हैं?",
+options: [
+"सात स्वर (जिन्हें बाद में सा-रे-ग-म आदि नाम मिले), मूलतः वैदिक स्वर-चिह्नों से संबंधित",
+"बारह स्वर",
+"पांच स्वर",
+"तीन स्वर"
+],
+answer: 0
+},
+
+{
+q: "मुस्लिम शासनकाल में भारतीय संगीत पर पड़े प्रभाव का एक प्रमुख उदाहरण क्या माना जाता है?",
+options: [
+"फारसी-अरबी तत्वों का समावेश (जैसे ख्याल, कव्वाली, तराना का विकास)",
+"संगीत का पूर्णतः लुप्त हो जाना",
+"कोई प्रभाव नहीं पड़ा",
+"केवल नृत्य पर प्रभाव"
+],
+answer: 0
+},
+
+{
+q: "उन्नीसवीं-बीसवीं शताब्दी में संगीत के 'पुनरुत्थान आंदोलन' (Revival Movement) का श्रेय मुख्यतः किन्हें जाता है?",
+options: [
+"पं. विष्णु नारायण भातखंडे व पं. विष्णु दिगंबर पलुस्कर",
+"केवल तानसेन",
+"केवल अमीर खुसरो",
+"केवल भरत मुनि"
+],
+answer: 0
+},
+
+{
+q: "संगीत के 'सार्वजनिकीकरण' (Democratization) में गांधर्व महाविद्यालयों की क्या भूमिका रही?",
+options: [
+"संगीत शिक्षा को गुरु-शिष्य परंपरा से आगे बढ़ाकर संस्थागत व सर्वसुलभ बनाना",
+"संगीत को केवल दरबारों तक सीमित रखना",
+"कोई भूमिका नहीं",
+"केवल वाद्य निर्माण सिखाना"
+],
+answer: 0
+},
+
+{
+q: "आकाशवाणी (All India Radio) ने भारतीय शास्त्रीय संगीत के प्रसार में क्या भूमिका निभाई?",
+options: [
+"रेडियो प्रसारण द्वारा शास्त्रीय संगीत को व्यापक जनमानस तक पहुंचाना व कलाकारों को मंच देना",
+"संगीत प्रसारण पर पूर्णतः प्रतिबंध",
+"कोई भूमिका नहीं",
+"केवल पाश्चात्य संगीत प्रसारित करना"
+],
+answer: 0
+},
+
+{
+q: "समकालीन संगीत जगत में 'कॉपीराइट व बौद्धिक संपदा अधिकार' (IPR) की चर्चा किस संदर्भ में प्रासंगिक है?",
+options: [
+"पारंपरिक बंदिशों व नई रचनाओं के स्वामित्व तथा संरक्षण से संबंधित मुद्दे",
+"केवल वाद्य निर्माण से",
+"केवल परीक्षा प्रणाली से",
+"कोई प्रासंगिकता नहीं"
+],
+answer: 0
+},
+
+{
+q: "'राग की आत्मा' (सार तत्व/Essence) को परिभाषित करने में सबसे अधिक कौन सा तत्व निर्णायक माना जाता है, अकेले आरोह-अवरोह से अधिक?",
+options: [
+"राग की चलन (typical melodic movement/phraseology) व पकड़",
+"केवल वादी स्वर",
+"केवल थाट",
+"केवल जाति"
+],
+answer: 0
+},
+
+{
+q: "'गायकी-अंग सितार वादन' के प्रवर्तन का श्रेय मुख्यतः किस घराने/परंपरा को दिया जाता है?",
+options: [
+"इमदादखानी घराना (सितार)",
+"मैहर घराना (सरोद)",
+"ग्वालियर घराना (गायन)",
+"बनारस घराना (तबला)"
+],
+answer: 0
+},
+
+{
+q: "बनारस घराना किस वाद्य/गायन शैली के लिए विशेष रूप से प्रसिद्ध है?",
+options: [
+"तबला वादन व ठुमरी-टप्पा गायकी",
+"केवल ध्रुपद",
+"केवल सितार वादन",
+"केवल पाश्चात्य संगीत"
+],
+answer: 0
+},
+
+{
+q: "संगीत में 'सृजनात्मकता व परंपरा के बीच संतुलन' का प्रश्न किस संदर्भ में उठता है?",
+options: [
+"कलाकार की नवीन प्रस्तुति व शास्त्रीय नियमों के पालन के बीच द्वंद्व",
+"केवल वाद्य चयन में",
+"केवल परीक्षा में",
+"कोई प्रश्न नहीं उठता"
+],
+answer: 0
+},
+
+{
+q: "'संगीत समीक्षा' (Music Criticism) लेखन में मूल्यांकन का आधार सामान्यतः क्या माना जाता है?",
+options: [
+"राग शुद्धता, लयकारी, सृजनात्मकता व समग्र प्रस्तुति प्रभाव",
+"केवल कलाकार की प्रसिद्धि",
+"केवल वाद्य की कीमत",
+"केवल श्रोताओं की संख्या"
+],
+answer: 0
+},
+
+{
+q: "भारतीय शास्त्रीय संगीत के यूनेस्को (UNESCO) अमूर्त सांस्कृतिक विरासत में सम्मिलित होने का क्या महत्व है?",
+options: [
+"इसे वैश्विक स्तर पर संरक्षित व मान्यता प्राप्त सांस्कृतिक धरोहर के रूप में स्वीकृति मिलना",
+"कोई महत्व नहीं",
+"केवल आर्थिक लाभ",
+"केवल विदेश में प्रचार"
+],
+answer: 0
+},
+
+{
+q: "भारतीय शास्त्रीय संगीत के यूनेस्को (UNESCO) अमूर्त सांस्कृतिक विरासत में सम्मिलित होने का क्या महत्व है?",
+options: [
+"इसे वैश्विक स्तर पर संरक्षित व मान्यता प्राप्त सांस्कृतिक धरोहर के रूप में स्वीकृति मिलना",
+"कोई महत्व नहीं",
+"केवल आर्थिक लाभ",
+"केवल विदेश में प्रचार"
+],
+answer: 0
+}
+
+];
+
+
+/*
+   NOTE:
+   The supplied list contains 30 questions.
+   The final question below is replaced with Q30
+   from the supplied set.
+*/
+
+questions.pop();
+
+questions.push({
+
+q: "पंडित रविशंकर व उस्ताद अली अकबर खां ने किस प्रसिद्ध संगीत गुरु से शिक्षा प्राप्त की थी?",
+
+options: [
+"उस्ताद अलाउद्दीन खां",
+"उस्ताद बिस्मिल्लाह खां",
+"पंडित भातखंडे",
+"पंडित पलुस्कर"
+],
+
+answer: 0
+
+});
+
+
+let score = 0;
+let answered = 0;
+
+document.getElementById("total").textContent = questions.length;
+
+
+function loadQuiz() {
+
+    const quiz = document.getElementById("quiz");
+
+    questions.forEach((question, index) => {
+
+        const card = document.createElement("div");
+
+        card.className = "question";
+
+        let html = `
+            <h3>
+                ${index + 1}. ${question.q}
+            </h3>
+        `;
+
+        question.options.forEach((option, optionIndex) => {
+
+            html += `
+                <button
+                    class="option"
+                    onclick="checkAnswer(this, ${index}, ${optionIndex})"
+                >
+                    ${String.fromCharCode(97 + optionIndex)}) ${option}
+                </button>
+            `;
+
+        });
+
+        html += `
+            <div
+                class="feedback"
+                id="feedback-${index}">
+            </div>
+        `;
+
+        card.innerHTML = html;
+
+        quiz.appendChild(card);
+
+    });
+
+}
+
+
+function checkAnswer(button, questionIndex, selectedIndex) {
+
+    const question = questions[questionIndex];
+
+    const card = button.parentElement;
+
+    const buttons = card.querySelectorAll(".option");
+
+    const feedback =
+        document.getElementById(`feedback-${questionIndex}`);
+
+
+    buttons.forEach(btn => {
+        btn.disabled = true;
+    });
+
+
+    if (selectedIndex === question.answer) {
+
+        button.classList.add("correct");
+
+        feedback.textContent =
+            "✅ सही उत्तर! बहुत बढ़िया!";
+
+        feedback.style.color = "#216b21";
+
+        score++;
+
+        document.getElementById("score").textContent = score;
+
+    }
+
+    else {
+
+        button.classList.add("wrong");
+
+        buttons[question.answer].classList.add("correct");
+
+        feedback.innerHTML =
+            `❌ गलत उत्तर! सही उत्तर है:
+            <b>${String.fromCharCode(97 + question.answer)})
+            ${question.options[question.answer]}</b>`;
+
+        feedback.style.color = "#9b281d";
+
+    }
+
+
+    answered++;
+
+
+    if (answered === questions.length) {
+
+        setTimeout(showResult, 500);
+
+    }
+
+}
+
+
+function showResult() {
+
+    const result =
+        document.getElementById("result");
+
+    const finalScore =
+        document.getElementById("finalScore");
+
+    const message =
+        document.getElementById("message");
+
+
+    finalScore.textContent =
+        `आपका स्कोर: ${score} / ${questions.length}`;
+
+
+    const percentage =
+        (score / questions.length) * 100;
+
+
+    if (percentage === 100) {
+
+        message.textContent =
+            "🏆 Perfect Score! Classical Music Master!";
+
+    }
+
+    else if (percentage >= 90) {
+
+        message.textContent =
+            "🔥 Excellent! आपकी तैयारी बहुत मजबूत है!";
+
+    }
+
+    else if (percentage >= 75) {
+
+        message.textContent =
+            "👏 बहुत अच्छा! थोड़ी और revision करें।";
+
+    }
+
+    else if (percentage >= 50) {
+
+        message.textContent =
+            "🎵 अच्छा प्रयास! Important concepts दोबारा revise करें।";
+
+    }
+
+    else {
+
+        message.textContent =
+            "📚 कोई बात नहीं! Concepts revise करके फिर कोशिश करें।";
+
+    }
+
+
+    result.style.display = "block";
+
+    result.scrollIntoView({
+        behavior: "smooth"
+    });
+
+}
+
+
+loadQuiz();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>प्रश्नावली पूर्ण विशारद प्रथम </title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+
+    background:
+    url("file:///C:/Users/Admin/Desktop/VSCODE/FP/backgroundimg.jpg");; center top/cover fixed no-repeat;
+  filter:saturate(.82);
+        linear-gradient(rgba(45, 25, 10, 0.72), rgba(45, 25, 10, 0.72)),
+        url("music-theme.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+
+    color: #3b2414;
+    padding: 20px;
+}
+
+/* HEADER */
+
+.header {
+    max-width: 1000px;
+    margin: auto;
+    padding: 25px;
+
+    text-align: center;
+
+    background: linear-gradient(135deg, #3a1f0d, #5b3217);
+
+    border: 2px solid #d4af37;
+    border-radius: 18px;
+
+    box-shadow: 0 8px 25px rgba(0,0,0,0.45);
+}
+
+.header h1 {
+    margin: 0;
+
+    color: #f5d76e;
+
+    font-size: 30px;
+}
+
+.header p {
+    color: #f4e5bd;
+    margin-top: 8px;
+}
+
+
+/* SCORE */
+
+.score-box {
+    max-width: 1000px;
+
+    margin: 15px auto;
+
+    padding: 14px;
+
+    text-align: center;
+
+    background: rgba(58, 31, 13, 0.95);
+
+    color: #f5d76e;
+
+    border: 2px solid #d4af37;
+    border-radius: 12px;
+
+    font-size: 20px;
+    font-weight: bold;
+
+    position: sticky;
+    top: 10px;
+
+    z-index: 10;
+
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+}
+
+
+/* QUIZ */
+
+#quiz {
+    max-width: 1000px;
+    margin: auto;
+}
+
+
+/* QUESTION CARD */
+
+.question {
+    margin: 20px 0;
+
+    padding: 22px;
+
+    background:
+        linear-gradient(
+            rgba(255,248,225,0.95),
+            rgba(245,225,180,0.95)
+        );
+
+    border: 2px solid #a87532;
+
+    border-radius: 16px;
+
+    box-shadow: 0 7px 18px rgba(0,0,0,0.35);
+}
+
+.question h3 {
+    margin-top: 0;
+
+    color: #542d13;
+
+    font-size: 19px;
+}
+
+
+/* OPTIONS */
+
+.option {
+    display: block;
+
+    width: 100%;
+
+    margin: 10px 0;
+
+    padding: 13px 16px;
+
+    text-align: left;
+
+    font-size: 16px;
+
+    color: #3b2414;
+
+    background: #fffaf0;
+
+    border: 2px solid #b88a52;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.option:hover {
+    background: #f3dfb5;
+
+    transform: translateX(4px);
+}
+
+
+/* CORRECT */
+
+.option.correct {
+    background: #b8dfb8 !important;
+
+    border-color: #347a34 !important;
+
+    color: #164d16 !important;
+
+    font-weight: bold;
+}
+
+
+/* WRONG */
+
+.option.wrong {
+    background: #edb5a8 !important;
+
+    border-color: #a63c2f !important;
+
+    color: #701c14 !important;
+
+    font-weight: bold;
+}
+
+
+/* DISABLED */
+
+.option:disabled {
+    cursor: default;
+}
+
+
+/* FEEDBACK */
+
+.feedback {
+    margin-top: 12px;
+
+    padding: 10px;
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    border-radius: 8px;
+}
+
+
+/* FINAL RESULT */
+
+#result {
+    max-width: 1000px;
+
+    margin: 30px auto;
+
+    padding: 30px;
+
+    text-align: center;
+
+    background: rgba(58, 31, 13, 0.95);
+
+    color: #f5d76e;
+
+    border: 2px solid #d4af37;
+
+    border-radius: 18px;
+
+    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+
+    display: none;
+}
+
+
+/* RESTART BUTTON */
+
+.restart {
+    margin-top: 15px;
+
+    padding: 12px 25px;
+
+    background: #d4af37;
+
+    color: #3a1f0d;
+
+    border: none;
+
+    border-radius: 10px;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.restart:hover {
+    background: #f0cf58;
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<div class="header">
+
+    <h1>🎶 प्रश्नावली पूर्ण विशारद प्रथम </h1>
+
+    <p>Set 6 • 30 Questions</p>
+
+</div>
+
+
+<div class="score-box">
+
+    Score:
+    <span id="score">0</span>
+    /
+    <span id="total">30</span>
+
+</div>
+
+
+<div id="quiz"></div>
+
+
+<div id="result">
+
+    <h2>🎵 Quiz Completed!</h2>
+
+    <h3 id="finalScore"></h3>
+
+    <p id="message"></p>
+
+    <button class="restart" onclick="location.reload()">
+        🔄 Restart Quiz
+    </button>
+
+</div>
+
+
+<script>
+
+
+const questions = [
+
+{
+q: "राग शुद्ध कल्याण किस थाट से संबंधित है और इसकी विशेषता क्या है?",
+options: [
+"कल्याण थाट, म तीव्र का अल्प प्रयोग व शेष बिलावल-अंग",
+"भैरव थाट",
+"काफी थाट",
+"तोड़ी थाट"
+],
+answer: 0
+},
+
+{
+q: "राग देशकार और राग भूपाली में मुख्य अंतर क्या है?",
+options: [
+"देशकार में शुद्ध म का अल्प प्रयोग होता है, भूपाली में म वर्जित है",
+"दोनों बिल्कुल समान हैं",
+"देशकार रात्रि राग है, भूपाली नहीं",
+"देशकार में सातों स्वर लगते हैं"
+],
+answer: 0
+},
+
+{
+q: "राग मियां की तोड़ी किस थाट से संबंधित है?",
+options: [
+"तोड़ी",
+"भैरव",
+"पूर्वी",
+"मारवा"
+],
+answer: 0
+},
+
+{
+q: "राग किरवानी की उत्पत्ति मूलतः किस संगीत पद्धति से मानी जाती है?",
+options: [
+"कर्नाटक संगीत",
+"हिंदुस्तानी मूल",
+"पाश्चात्य संगीत",
+"लोक संगीत"
+],
+answer: 0
+},
+
+{
+q: "राग चारुकेशी किस स्वर-संरचना के लिए जाना जाता है?",
+options: [
+"शुद्ध स्वर व कोमल नि-ध का विशेष मेल (कर्नाटक मूल)",
+"सभी स्वर तीव्र",
+"केवल पंचम स्वर प्रधान",
+"कोई कोमल स्वर नहीं"
+],
+answer: 0
+},
+
+{
+q: "'काल' (Kaal) शब्द ताल-विज्ञान में किसे दर्शाता है?",
+options: [
+"समय की वह इकाई जिससे मात्रा नापी जाती है",
+"राग का समय",
+"थाट का नाम",
+"वाद्य विशेष"
+],
+answer: 0
+},
+
+{
+q: "'मार्ग ताल' और 'देशी ताल' में क्या अंतर माना गया है?",
+options: [
+"मार्ग ताल शास्त्रीय व प्राचीन नियमबद्ध, देशी ताल लोक-प्रचलित/परवर्ती",
+"दोनों एक समान हैं",
+"मार्ग ताल केवल वाद्य में, देशी केवल गायन में",
+"कोई अंतर नहीं"
+],
+answer: 0
+},
+
+{
+q: "पंचम सवारी ताल में कुल कितनी मात्राएं होती हैं?",
+options: [
+"13",
+"15",
+"17",
+"10"
+],
+answer: 1
+},
+
+{
+q: "'फरोदस्त' ताल में कुल कितनी मात्राएं होती हैं?",
+options: [
+"12",
+"14",
+"16",
+"15"
+],
+answer: 1
+},
+
+{
+q: "'गणपति ताल' अथवा दुर्लभ संयुक्त तालों का निर्माण किस सिद्धांत पर आधारित होता है?",
+options: [
+"विभिन्न विभागों की मात्राओं के असमान संयोजन पर",
+"केवल सम विभाजन पर",
+"एक ही मात्रा की पुनरावृत्ति पर",
+"बिना विभाग के"
+],
+answer: 0
+},
+
+{
+q: "'अतीत' और 'अनागत' ग्रह किससे संबंधित शब्द हैं?",
+options: [
+"गीत के सम-बिन्दु से पूर्व या पश्चात प्रारंभ होने की स्थिति (ग्रह के प्रकार)",
+"राग का प्रकार",
+"थाट का वर्गीकरण",
+"वाद्य के भाग"
+],
+answer: 0
+},
+
+{
+q: "'सम ग्रह' किसे कहते हैं?",
+options: [
+"जब गीत/बंदिश ठीक सम पर ही आरंभ हो",
+"जब गीत सम से पूर्व आरंभ हो",
+"जब गीत सम के बाद आरंभ हो",
+"जब कोई ताल न हो"
+],
+answer: 0
+},
+
+{
+q: "भातखंडे जी ने अपने ग्रंथों की रचना किस भाषा में मुख्यतः की?",
+options: [
+"हिंदी व मराठी (क्रमिक पुस्तक मालिका आदि)",
+"संस्कृत मात्र",
+"अंग्रेज़ी",
+"उर्दू"
+],
+answer: 0
+},
+
+{
+q: "भातखंडे जी की प्रसिद्ध पुस्तक शृंखला 'क्रमिक पुस्तक मालिका' किस विषय पर आधारित है?",
+options: [
+"विभिन्न रागों की स्वरलिपि सहित क्रमबद्ध बंदिशों का संग्रह",
+"केवल तालों का वर्णन",
+"केवल वाद्यों का इतिहास",
+"पाश्चात्य संगीत तुलना"
+],
+answer: 0
+},
+
+{
+q: "पं. विष्णु नारायण भातखंडे की एक अन्य प्रमुख पुस्तक 'हिन्दुस्तानी संगीत पद्धति' किस विषय पर केंद्रित है?",
+options: [
+"राग-वर्गीकरण व सैद्धांतिक विवेचन (चतुर्थ खंड आदि)",
+"केवल जीवनी",
+"केवल तबला वादन",
+"केवल नृत्य कला"
+],
+answer: 0
+},
+
+{
+q: "उस्ताद विलायत खां किस वाद्य के लिए विख्यात थे?",
+options: [
+"सितार",
+"सरोद",
+"बांसुरी",
+"शहनाई"
+],
+answer: 0
+},
+
+{
+q: "उस्ताद बिस्मिल्लाह खां किस वाद्य के लिए विश्वविख्यात थे?",
+options: [
+"शहनाई",
+"सितार",
+"सरोद",
+"तबला"
+],
+answer: 0
+},
+
+{
+q: "पंडित रविशंकर मुख्यतः किस वाद्य के लिए जाने जाते हैं?",
+options: [
+"सितार",
+"सरोद",
+"संतूर",
+"बांसुरी"
+],
+answer: 0
+},
+
+{
+q: "उस्ताद अमजद अली खां किस वाद्य के प्रमुख कलाकार हैं?",
+options: [
+"सरोद",
+"सितार",
+"तबला",
+"वायलिन"
+],
+answer: 0
+},
+
+{
+q: "पंडित भीमसेन जोशी किस घराने से संबंधित थे?",
+options: [
+"किराना घराना",
+"आगरा घराना",
+"ग्वालियर घराना",
+"पटियाला घराना"
+],
+answer: 0
+},
+
+{
+q: "'ध्वनि विज्ञान' (Acoustics) की दृष्टि से 'कंपन आवृत्ति' (frequency) किससे संबंधित है?",
+options: [
+"स्वर की ऊँचाई-नीचाई (पिच) निर्धारित करने से",
+"ताल की गति से",
+"राग की जाति से",
+"वाद्य के आकार से"
+],
+answer: 0
+},
+
+{
+q: "'सप्तक भेद' का सिद्धांत आधुनिक थाट पद्धति के किस प्राचीन सिद्धांत से मिलता-जुलता है?",
+options: [
+"मूर्च्छना सिद्धांत",
+"रस सिद्धांत",
+"ग्राम सिद्धांत केवल नाम रूप में",
+"कोई संबंध नहीं"
+],
+answer: 0
+},
+
+{
+q: "'समवादी' शब्द किस अवधारणा से मिलता-जुलता किंतु भिन्न प्रयुक्त होता है?",
+options: [
+"संवादी स्वर से (कभी-कभी पर्यायवाची रूप में प्रयुक्त)",
+"वर्जित स्वर से",
+"ताल से",
+"थाट से"
+],
+answer: 0
+},
+
+{
+q: "रागों का वर्गीकरण 'पूर्वांग-प्रधान' व 'उत्तरांग-प्रधान' किस आधार पर किया जाता है?",
+options: [
+"राग के प्रमुख स्वर सप्तक के पूर्वार्ध (सा-रे-ग-म) या उत्तरार्ध (प-ध-नि-सां) में केंद्रित होने पर",
+"राग के समय पर",
+"राग की जाति पर",
+"राग के थाट पर"
+],
+answer: 0
+},
+
+{
+q: "वे राग जिनके वादी-संवादी स्वर सप्तक के पूर्वार्ध (सा से म) में हों, क्या कहलाते हैं?",
+options: [
+"पूर्वांग प्रधान राग",
+"उत्तरांग प्रधान राग",
+"संधिप्रकाश राग",
+"मिश्र राग"
+],
+answer: 0
+},
+
+{
+q: "'दुगुन', 'तिगुन', 'चौगुन' शब्द किससे संबंधित हैं?",
+options: [
+"तान अथवा लय को मूल गति से दो/तीन/चार गुना तीव्र करने से",
+"राग के प्रकार से",
+"स्वरों की संख्या से",
+"थाट की संख्या से"
+],
+answer: 0
+},
+
+{
+q: "'बढ़त' शब्द राग-विस्तार की प्रक्रिया में क्या दर्शाता है?",
+options: [
+"राग को क्रमशः विस्तारपूर्वक आगे बढ़ाने की प्रक्रिया",
+"ताल की गति बढ़ाना",
+"स्वर की तीव्रता बढ़ाना",
+"वाद्य के तार कसना"
+],
+answer: 0
+},
+
+{
+q: "संगीत में 'सरगम गायन' (बोल-सरगम सहित) किस उद्देश्य से प्रयुक्त होता है?",
+options: [
+"स्वर-ज्ञान प्रदर्शन व लयकारी हेतु राग विस्तार में",
+"केवल आरंभिक शिक्षा हेतु",
+"केवल ताल सीखने हेतु",
+"केवल वाद्य वादन में"
+],
+answer: 0
+},
+
+{
+q: "'बोल-ताल' शब्द किस गायन तकनीक से संबंधित है?",
+options: [
+"बंदिश के बोलों को तालबद्ध रूप से विभिन्न लयकारी में प्रस्तुत करना",
+"केवल आलाप",
+"केवल तानपुरा वादन",
+"केवल सम पहचानना"
+],
+answer: 0
+},
+
+{
+q: "'लक्षण गीत' किसे कहते हैं?",
+options: [
+"जिस गीत के बोलों में स्वयं राग के लक्षण (स्वर, समय, वादी-संवादी आदि) वर्णित हों",
+"कोई भी सामान्य बंदिश",
+"केवल तराना",
+"केवल आलाप"
+],
+answer: 0
+}
+
+];
+
+
+let score = 0;
+let answered = 0;
+
+document.getElementById("total").textContent = questions.length;
+
+
+function loadQuiz() {
+
+    const quiz = document.getElementById("quiz");
+
+    questions.forEach((question, index) => {
+
+        const card = document.createElement("div");
+
+        card.className = "question";
+
+        let html = `
+            <h3>
+                ${index + 1}. ${question.q}
+            </h3>
+        `;
+
+
+        question.options.forEach((option, optionIndex) => {
+
+            html += `
+                <button
+                    class="option"
+                    onclick="checkAnswer(
+                        this,
+                        ${index},
+                        ${optionIndex}
+                    )"
+                >
+                    ${String.fromCharCode(97 + optionIndex)}) ${option}
+                </button>
+            `;
+
+        });
+
+
+        html += `
+            <div
+                class="feedback"
+                id="feedback-${index}">
+            </div>
+        `;
+
+
+        card.innerHTML = html;
+
+        quiz.appendChild(card);
+
+    });
+
+}
+
+
+function checkAnswer(button, questionIndex, selectedIndex) {
+
+    const question = questions[questionIndex];
+
+    const card = button.parentElement;
+
+    const buttons = card.querySelectorAll(".option");
+
+    const feedback =
+        document.getElementById(
+            `feedback-${questionIndex}`
+        );
+
+
+    /* Prevent answering twice */
+
+    buttons.forEach(btn => {
+
+        btn.disabled = true;
+
+    });
+
+
+    /* CORRECT ANSWER */
+
+    if (selectedIndex === question.answer) {
+
+        button.classList.add("correct");
+
+        feedback.textContent =
+            "✅ सही उत्तर! बहुत बढ़िया!";
+
+        feedback.style.color = "#216b21";
+
+        score++;
+
+        document.getElementById("score").textContent = score;
+
+    }
+
+
+    /* WRONG ANSWER */
+
+    else {
+
+        button.classList.add("wrong");
+
+        buttons[question.answer].classList.add("correct");
+
+        feedback.innerHTML =
+            `❌ गलत उत्तर! सही उत्तर है: 
+             <b>${String.fromCharCode(97 + question.answer)}) 
+             ${question.options[question.answer]}</b>`;
+
+        feedback.style.color = "#9b281d";
+
+    }
+
+
+    answered++;
+
+
+    /* QUIZ COMPLETE */
+
+    if (answered === questions.length) {
+
+        setTimeout(showResult, 500);
+
+    }
+
+}
+
+
+function showResult() {
+
+    const result =
+        document.getElementById("result");
+
+    const finalScore =
+        document.getElementById("finalScore");
+
+    const message =
+        document.getElementById("message");
+
+
+    finalScore.textContent =
+        `आपका स्कोर: ${score} / ${questions.length}`;
+
+
+    const percentage =
+        (score / questions.length) * 100;
+
+
+    if (percentage === 100) {
+
+        message.textContent =
+            "🏆 Perfect Score! Classical Music Master!";
+
+    }
+
+    else if (percentage >= 90) {
+
+        message.textContent =
+            "🔥 Excellent! आपकी तैयारी बहुत मजबूत है!";
+
+    }
+
+    else if (percentage >= 75) {
+
+        message.textContent =
+            "👏 बहुत अच्छा! थोड़ी और revision करें।";
+
+    }
+
+    else if (percentage >= 50) {
+
+        message.textContent =
+            "🎵 अच्छा प्रयास! Important concepts दोबारा revise करें।";
+
+    }
+
+    else {
+
+        message.textContent =
+            "📚 कोई बात नहीं! Concepts revise करके फिर कोशिश करें।";
+
+    }
+
+
+    result.style.display = "block";
+
+    result.scrollIntoView({
+        behavior: "smooth"
+    });
+
+}
+
+
+loadQuiz();
+
+</script>
+
+</body>
+</html>

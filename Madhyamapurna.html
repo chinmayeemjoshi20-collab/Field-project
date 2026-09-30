@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>भारतीय संगीत प्रश्नावली - भाग 5</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 35px 15px;
+    font-family: "Noto Serif Devanagari", Georgia, serif;
+
+    background:
+    url("file:///C:/Users/Admin/Desktop/VSCODE/FP/backgroundimg.jpg");; center top/cover fixed no-repeat;
+  filter:saturate(.82);
+        linear-gradient(
+            rgba(55, 25, 8, 0.35),
+            rgba(55, 25, 8, 0.55)
+        ),
+        url("music-theme.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+
+    color: #3d210d;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+}
+
+/* HEADER */
+
+.header {
+    text-align: center;
+    padding: 35px 20px;
+    margin-bottom: 25px;
+
+    background: linear-gradient(
+        rgba(91, 45, 15, .92),
+        rgba(58, 27, 8, .92)
+    );
+
+    border: 2px solid #d6a84f;
+    border-radius: 18px;
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,.55),
+        inset 0 0 30px rgba(255,200,80,.08);
+}
+
+.header h1 {
+    margin: 0;
+    color: #f6d477;
+    font-size: 38px;
+    text-shadow: 0 2px 5px #000;
+}
+
+.header p {
+    color: #e8c98a;
+    font-size: 17px;
+}
+
+.decor {
+    width: 75%;
+    height: 2px;
+    margin: 18px auto;
+
+    background: linear-gradient(
+        to right,
+        transparent,
+        #d8ae59,
+        #fff0b0,
+        #d8ae59,
+        transparent
+    );
+}
+
+/* SCORE */
+
+.score-box {
+    position: sticky;
+    top: 12px;
+    z-index: 20;
+
+    text-align: center;
+    padding: 13px;
+    margin-bottom: 25px;
+
+    background: rgba(54,25,7,.95);
+
+    border: 1px solid #d6a84f;
+    border-radius: 30px;
+
+    color: #ead095;
+
+    box-shadow: 0 5px 20px rgba(0,0,0,.45);
+}
+
+.score-box span {
+    color: #ffd86a;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* QUESTION */
+
+.question {
+    position: relative;
+
+    padding: 25px 27px;
+    margin-bottom: 25px;
+
+    background: linear-gradient(
+        rgba(245,218,159,.96),
+        rgba(210,165,91,.96)
+    );
+
+    border: 2px solid #a96f25;
+    border-radius: 14px;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.45),
+        inset 0 0 20px rgba(100,45,5,.15);
+}
+
+.question h3 {
+    margin: 0 0 18px;
+    color: #4b260d;
+    font-size: 19px;
+    line-height: 1.6;
+}
+
+/* OPTIONS */
+
+.option {
+    width: 100%;
+    display: block;
+
+    margin: 9px 0;
+    padding: 13px 16px;
+
+    border: 1px solid #a87532;
+    border-radius: 9px;
+
+    background: rgba(255,245,216,.78);
+
+    color: #42240f;
+    text-align: left;
+
+    font-family: inherit;
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.option:hover:not(:disabled) {
+    transform: translateX(5px);
+    background: rgba(255,250,230,.98);
+}
+
+/* RIGHT */
+
+.option.correct {
+    background: #b9d99b !important;
+    border-color: #47752b !important;
+    color: #234514 !important;
+    font-weight: bold;
+}
+
+/* WRONG */
+
+.option.wrong {
+    background: #d9957c !important;
+    border-color: #873c28 !important;
+    color: #651d0e !important;
+    font-weight: bold;
+}
+
+.option:disabled {
+    cursor: not-allowed;
+}
+
+/* FEEDBACK */
+
+.feedback {
+    min-height: 25px;
+    margin: 15px 0 0;
+
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.correct-text {
+    color: #316d18;
+}
+
+.wrong-text {
+    color: #8b2412;
+}
+
+/* RESULT */
+
+#finalResult {
+    display: none;
+
+    text-align: center;
+
+    margin-top: 35px;
+    padding: 35px 20px;
+
+    background: linear-gradient(
+        rgba(74,35,9,.97),
+        rgba(45,20,5,.97)
+    );
+
+    border: 2px solid #d6a84f;
+    border-radius: 18px;
+
+    color: #f4d68c;
+
+    box-shadow: 0 10px 35px rgba(0,0,0,.6);
+}
+
+#finalResult h2 {
+    color: #f5d476;
+    font-size: 31px;
+}
+
+.final-score {
+    margin: 15px 0;
+    color: #ffd968;
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.restart {
+    margin-top: 18px;
+    padding: 13px 30px;
+
+    border: 1px solid #e6bd62;
+    border-radius: 25px;
+
+    background: linear-gradient(#e8bd5d,#b47a25);
+
+    color: #351a07;
+
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+@media(max-width:600px) {
+
+    body {
+        padding: 18px 10px;
+    }
+
+    .header h1 {
+        font-size: 28px;
+    }
+
+    .question {
+        padding: 20px 17px;
+    }
+
+    .question h3 {
+        font-size: 17px;
+    }
+
+    .option {
+        font-size: 15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>🪔 भारतीय संगीत प्रश्नावली मध्यमा पूर्ण 🎵</h1>
+
+        <div class="decor"></div>
+
+        <p>भाग – 5</p>
+        <p>30 प्रश्न • तुरंत अपना उत्तर जाँचें</p>
+    </div>
+
+    <div class="score-box">
+        आपका Score:
+        <span id="score">0</span> / 30
+    </div>
+
+    <div id="quiz"></div>
+
+    <div id="finalResult">
+
+        <h2>✦ प्रश्नावली पूर्ण ✦</h2>
+
+        <div class="decor"></div>
+
+        <div class="final-score">
+            <span id="finalScore">0</span> / 30
+        </div>
+
+        <p id="finalMessage"></p>
+
+        <button class="restart" onclick="location.reload()">
+            🔄 पुनः प्रयास करें
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   QUESTIONS
+========================= */
+
+const questions = [
+
+{
+q: "राग मियां की मल्हार किस थाट से संबंधित है?",
+options: ["काफी", "खमाज", "कल्याण", "बिलावल"],
+answer: 0
+},
+
+{
+q: "राग श्री किस थाट से उत्पन्न है?",
+options: ["पूर्वी", "मारवा", "तोड़ी", "भैरव"],
+answer: 0
+},
+
+{
+q: "राग श्री किस समय गाया जाता है?",
+options: [
+"प्रातःकालीन संधिप्रकाश",
+"सायंकालीन संधिप्रकाश",
+"मध्यरात्रि",
+"मध्याह्न"
+],
+answer: 1
+},
+
+{
+q: "राग पूरिया धनाश्री किन दो रागों के नामों के मेल से बना है?",
+options: [
+"पूरिया और धनाश्री",
+"पूर्वी और कल्याण",
+"मारवा और श्री",
+"भैरव और तोड़ी"
+],
+answer: 0
+},
+
+{
+q: "राग मुलतानी किस थाट से संबंधित है?",
+options: ["तोड़ी", "पूर्वी", "मारवा", "भैरव"],
+answer: 0
+},
+
+{
+q: "'भाषांग राग' किसे कहते हैं?",
+options: [
+"जिस राग में दूसरे राग का स्वर-अंश आता हो",
+"जिसमें केवल अपने थाट के स्वर हों",
+"जो कभी न गाया जाए",
+"जिसकी कोई जाति न हो"
+],
+answer: 0
+},
+
+{
+q: "'औपांग' अथवा 'उपांग राग' किसे कहते हैं?",
+options: [
+"जो पूर्णतः अपने ही थाट के स्वरों में सीमित रहे",
+"जिसमें दूसरे थाट का मिश्रण हो",
+"जो निरर्थक बोलों में गाया जाए",
+"जो केवल वाद्य पर बजे"
+],
+answer: 0
+},
+
+{
+q: "'मिश्र राग' का क्या अर्थ है?",
+options: [
+"दो या अधिक रागों के स्वरों व भावों का सम्मिश्रण",
+"केवल एक राग की शुद्ध प्रस्तुति",
+"राग जो कभी नहीं गाया जाता",
+"राग जिसमें कोई ताल न हो"
+],
+answer: 0
+},
+
+{
+q: "'जोड़ राग' किसे कहते हैं?",
+options: [
+"दो रागों को इस प्रकार मिलाना कि दोनों की पहचान स्पष्ट बनी रहे",
+"एक ही राग की पुनरावृत्ति",
+"वाद्य वादन की तकनीक जोड़",
+"ताल के दो प्रकार जोड़ना"
+],
+answer: 0
+},
+
+{
+q: "'अनुवादी स्वर' किसे कहते हैं?",
+options: [
+"राग में वादी-संवादी के अतिरिक्त प्रयुक्त शेष स्वर",
+"राग में वर्जित स्वर",
+"राग का प्रथम स्वर",
+"राग का अंतिम स्वर"
+],
+answer: 0
+},
+
+{
+q: "'विवादी स्वर' किसे कहते हैं?",
+options: [
+"राग में वर्जित स्वर का कभी-कभी अल्प व सजगता से किया गया प्रयोग",
+"राग का प्रधान स्वर",
+"संवादी स्वर का पर्याय",
+"आरोह का अंतिम स्वर"
+],
+answer: 0
+},
+
+{
+q: "सुलताल में कुल कितनी मात्राएं होती हैं?",
+options: ["8", "9", "10", "12"],
+answer: 2
+},
+
+{
+q: "सुलताल में विभाग कितने होते हैं?",
+options: ["4", "5", "6", "7"],
+answer: 2
+},
+
+{
+q: "तेवरा ताल में कुल कितनी मात्राएं होती हैं?",
+options: ["5", "6", "7", "8"],
+answer: 2
+},
+
+{
+q: "दीपचंदी ताल में कुल कितनी मात्राएं होती हैं?",
+options: ["12", "14", "16", "10"],
+answer: 1
+},
+
+{
+q: "दीपचंदी ताल किस गायन शैली की संगत में विशेष रूप से प्रयुक्त होती है?",
+options: ["ठुमरी", "ध्रुपद", "तराना", "ख्याल विलंबित"],
+answer: 0
+},
+
+{
+q: "'मेल-कर्ता' पद्धति किस संगीत परंपरा से संबंधित है?",
+options: [
+"कर्नाटक (दक्षिण भारतीय) संगीत",
+"हिंदुस्तानी संगीत",
+"पाश्चात्य संगीत",
+"लोक संगीत"
+],
+answer: 0
+},
+
+{
+q: "कर्नाटक संगीत पद्धति में कुल कितने मेल (मेलकर्ता) मान्य हैं?",
+options: ["10", "32", "72", "22"],
+answer: 2
+},
+
+{
+q: "हिंदुस्तानी और कर्नाटक संगीत पद्धतियों में थाट/मेल व्यवस्था का मूल अंतर क्या है?",
+options: [
+"हिंदुस्तानी में 10 थाट, कर्नाटक में 72 मेल",
+"दोनों में समान संख्या",
+"हिंदुस्तानी में कोई थाट नहीं",
+"कर्नाटक में थाट व्यवस्था नहीं है"
+],
+answer: 0
+},
+
+{
+q: "'कण स्वर' किसे कहते हैं?",
+options: [
+"मुख्य स्वर से पूर्व हल्के स्पर्श के रूप में लगने वाला सहायक स्वर",
+"राग का वादी स्वर",
+"ताल की मात्रा",
+"सप्तक का नाम"
+],
+answer: 0
+},
+
+{
+q: "'गमक' के प्रमुख प्रकारों में कौन सा शामिल नहीं है?",
+options: [
+"आंदोलन",
+"कंपन",
+"स्फुरित",
+"संधिप्रकाश"
+],
+answer: 3
+},
+
+{
+q: "संगीत में 'रस' सिद्धांत मूलतः किस ग्रंथ में विस्तार से वर्णित है?",
+options: [
+"नाट्यशास्त्र",
+"संगीत रत्नाकर",
+"राग दर्पण",
+"स्वरमेलकलानिधि"
+],
+answer: 0
+},
+
+{
+q: "नवरसों की कुल संख्या कितनी मानी गई है?",
+options: ["7", "8", "9", "10"],
+answer: 2
+},
+
+{
+q: "'ध्रुपद' का प्राचीनतम रूप किस नाम से भी जाना जाता है?",
+options: [
+"प्रबंध गायन",
+"ख्याल",
+"ठुमरी",
+"कव्वाली"
+],
+answer: 0
+},
+
+{
+q: "'ख्याल' गायन शैली के विकास का श्रेय मुख्यतः किन्हें दिया जाता है?",
+options: [
+"अमीर खुसरो / सदारंग-अदारंग",
+"भरत मुनि",
+"सारंगदेव",
+"भातखंडे"
+],
+answer: 0
+},
+
+{
+q: "जयपुर-अतरौली घराने की गायकी की विशेषता क्या मानी जाती है?",
+options: [
+"जटिल लयकारी व दुर्लभ रागों का प्रयोग",
+"केवल सरल आलाप",
+"पाश्चात्य वाद्यों का प्रयोग",
+"केवल तराना गायन"
+],
+answer: 0
+},
+
+{
+q: "आगरा घराने की गायकी किस विशेष अंग के लिए जानी जाती है?",
+options: [
+"नोम-तोम आलाप व बोल-बाँट",
+"केवल ठुमरी",
+"पाश्चात्य समन्वय",
+"केवल वाद्य वादन"
+],
+answer: 0
+},
+
+{
+q: "'बोल-बनाव' किस गायन शैली की तकनीक से संबंधित शब्द है?",
+options: [
+"ठुमरी",
+"ध्रुपद",
+"तराना",
+"सरगम गायन"
+],
+answer: 0
+},
+
+{
+q: "'राग-रागिनी पद्धति' किस युग में प्रचलित वर्गीकरण पद्धति थी?",
+options: [
+"मध्यकाल (भातखंडे-पूर्व काल)",
+"आधुनिक काल",
+"वैदिक काल",
+"यह पद्धति कभी प्रचलित नहीं रही"
+],
+answer: 0
+},
+
+{
+q: "राग-रागिनी पद्धति में रागों को किस रूप में वर्गीकृत किया जाता था?",
+options: [
+"राग को पति, रागिनी को पत्नी व पुत्र रागों के रूप में परिवार जैसा",
+"केवल समय के आधार पर",
+"केवल थाट के आधार पर",
+"केवल वाद्य के आधार पर"
+],
+answer: 0
+}
+
+];
+
+
+/* =========================
+   CREATE QUIZ
+========================= */
+
+const quiz = document.getElementById("quiz");
+
+questions.forEach((question, index) => {
+
+    const card = document.createElement("div");
+
+    card.className = "question";
+
+    card.innerHTML = `
+        <h3>${index + 1}. ${question.q}</h3>
+
+        ${question.options.map((option, i) => `
+            <button
+                class="option"
+                onclick="checkAnswer(this, ${i}, ${question.answer})">
+
+                ${String.fromCharCode(97 + i)}) ${option}
+
+            </button>
+        `).join("")}
+
+        <p class="feedback"></p>
+    `;
+
+    quiz.appendChild(card);
+});
+
+
+/* =========================
+   CHECK ANSWER
+========================= */
+
+let score = 0;
+let answered = 0;
+
+function checkAnswer(button, selected, correct) {
+
+    const card = button.parentElement;
+
+    if (card.dataset.answered === "true") {
+        return;
+    }
+
+    card.dataset.answered = "true";
+
+    const buttons = card.querySelectorAll(".option");
+    const feedback = card.querySelector(".feedback");
+
+    buttons.forEach(btn => {
+        btn.disabled = true;
+    });
+
+
+    /* CORRECT */
+
+    if (selected === correct) {
+
+        button.classList.add("correct");
+
+        feedback.innerHTML =
+            "✅ सही उत्तर! बहुत बढ़िया!";
+
+        feedback.classList.add("correct-text");
+
+        score++;
+    }
+
+
+    /* WRONG */
+
+    else {
+
+        button.classList.add("wrong");
+
+        buttons[correct].classList.add("correct");
+
+        feedback.innerHTML =
+            "❌ गलत उत्तर! सही उत्तर हरे रंग में है।";
+
+        feedback.classList.add("wrong-text");
+    }
+
+
+    document.getElementById("score").innerText = score;
+
+    answered++;
+
+
+    if (answered === questions.length) {
+
+        setTimeout(showResult, 700);
+
+    }
+}
+
+
+/* =========================
+   FINAL RESULT
+========================= */
+
+function showResult() {
+
+    const result =
+        document.getElementById("finalResult");
+
+    const finalScore =
+        document.getElementById("finalScore");
+
+    const finalMessage =
+        document.getElementById("finalMessage");
+
+    finalScore.innerText = score;
+
+
+    if (score === 30) {
+
+        finalMessage.innerHTML =
+            "🔥 <b>अद्भुत!</b><br>" +
+            "Perfect Score! भारतीय संगीत पर आपकी पकड़ शानदार है।";
+
+    } else if (score >= 27) {
+
+        finalMessage.innerHTML =
+            "🏆 <b>Excellent!</b><br>" +
+            "आपकी तैयारी लगभग Perfect है।";
+
+    } else if (score >= 24) {
+
+        finalMessage.innerHTML =
+            "👏 <b>बहुत बढ़िया!</b><br>" +
+            "बस थोड़ा सा revision और करें।";
+
+    } else if (score >= 18) {
+
+        finalMessage.innerHTML =
+            "🎵 <b>अच्छा प्रयास!</b><br>" +
+            "कुछ important topics फिर से revise करें।";
+
+    } else {
+
+        finalMessage.innerHTML =
+            "🪔 <b>कोई बात नहीं!</b><br>" +
+            "Topics revise करें और फिर से कोशिश करें।";
+    }
+
+
+    result.style.display = "block";
+
+    result.scrollIntoView({
+        behavior: "smooth"
+    });
+}
+
+</script>
+
+</body>
+</html>
