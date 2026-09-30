@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Uthan Tabla Academy - Feedback</title>
+
+    <style>
+        body {
+            margin: 0;
+            background-color: #160b06;
+            background-image: url("file:///C:/Users/Admin/Desktop/VSCODE/FP/backgroundimg.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background: #100806;
+            padding: 18px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #4d2b1a;
+        }
+
+        header h2 {
+            margin: 0;
+            font-family: Georgia, serif;
+        }
+
+        header small {
+            color: #e88935;
+        }
+
+        nav a {
+            color: #ddd;
+            text-decoration: none;
+            margin: 0 12px;
+        }
+
+        nav a:hover {
+            color: #e88935;
+        }
+
+        .enroll {
+            background: #e88935;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+        .main {
+            width: 75%;
+            margin: 50px auto;
+        }
+
+        .heading {
+            text-align: center;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 8px 18px;
+            border: 1px solid #765039;
+            border-radius: 20px;
+            color: #e88935;
+            font-size: 12px;
+        }
+
+        .heading h1 {
+            font-family: Georgia, serif;
+            font-size: 48px;
+            margin: 25px 0 15px;
+        }
+
+        .heading h1 i {
+            color: #e88935;
+        }
+
+        .heading p {
+            color: #aaa;
+        }
+
+        .box {
+            background: rgba(30, 19, 13, 0.94);
+            border: 1px solid #59402f;
+            border-radius: 18px;
+            padding: 30px;
+            margin-top: 40px;
+        }
+
+        h3 {
+            font-family: Georgia, serif;
+            font-size: 21px;
+        }
+
+        .line {
+            border-top: 1px solid #4c3323;
+            margin: 30px 0;
+        }
+
+        .row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .field {
+            width: 50%;
+        }
+
+        label {
+            display: block;
+            color: #ddd;
+            font-size: 12px;
+            margin: 12px 0 7px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        select,
+        textarea {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px;
+            background: #2b2019;
+            color: white;
+            border: 1px solid #5d4a3c;
+            border-radius: 7px;
+        }
+
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: #999;
+        }
+
+        /* STAR RATING */
+
+        .stars {
+            direction: rtl;
+            text-align: left;
+            margin: 10px 0 25px;
+        }
+
+        .stars input {
+            display: none;
+        }
+
+        .stars label {
+            display: inline;
+            font-size: 38px;
+            color: #777;
+            cursor: pointer;
+            margin: 0;
+        }
+
+        .stars label:hover,
+        .stars label:hover ~ label,
+        .stars input:checked ~ label {
+            color: #e88935;
+        }
+
+        /* CATEGORY RATINGS */
+
+        .rating {
+            background: #292019;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #3e3026;
+        }
+
+        .rating-title {
+            color: #ddd;
+            font-size: 12px;
+            margin-bottom: 20px;
+        }
+
+        .rate {
+            margin-bottom: 22px;
+        }
+
+        .rate p {
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .rate label {
+            display: inline-block;
+            padding: 8px 12px;
+            margin: 3px;
+            background: #332a24;
+            border: 1px solid #51443a;
+            border-radius: 6px;
+            cursor: pointer;
+            color: #ccc;
+        }
+
+        .rate input {
+            display: none;
+        }
+
+        .rate label:hover,
+        .rate input:checked + label {
+            background: #e88935;
+            color: white;
+        }
+
+        .check {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #bbb;
+        }
+
+        .check input {
+            width: auto;
+        }
+
+        button {
+            display: block;
+            margin: 25px auto 10px;
+            padding: 14px 45px;
+            background: #e88935;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #d66f20;
+        }
+
+        .required {
+            text-align: center;
+            color: #777;
+            font-size: 12px;
+        }
+
+        footer {
+            background: #100806;
+            border-top: 1px solid #4d2b1a;
+            padding: 35px 8%;
+        }
+
+        .footer-row {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        footer h3 {
+            color: white;
+        }
+
+        footer h4 {
+            color: #e88935;
+        }
+
+        footer p {
+            color: #aaa;
+            font-size: 13px;
+        }
+
+        .copyright {
+            border-top: 1px solid #39251a;
+            margin-top: 25px;
+            padding-top: 20px;
+            color: #777;
+            font-size: 12px;
+        }
+
+        @media (max-width: 800px) {
+            header,
+            .row,
+            .footer-row {
+                flex-direction: column;
+            }
+
+            nav {
+                margin: 20px 0;
+            }
+
+            .main {
+                width: 90%;
+            }
+
+            .field {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+
+        <div>
+            <h2>Uthan Tabla Academy</h2>
+            <small>CLASSICAL • CONTEMPORARY</small>
+        </div>
+
+        <nav>
+            <a href="Homepage.html">Home</a>
+            <a href="#">About</a>
+            <a href="#">Gallery</a>
+            <a href="Quiz.html">Courses</a>
+            <a href="https://abgmvm.org/question-paper/">
+                Papers
+            </a>
+        
+            <a href="Feedback.html">Feedback</a>
+        </nav>
+
+        <a class="enroll" href="Enrollmentform.html">Enroll Now</a>
+
+    </header>
+
+
+    <div class="main">
+
+        <div class="heading">
+
+            <div class="tag">★ STUDENT FEEDBACK</div>
+
+            <h1>
+                Your Experience <i>Matters</i>
+            </h1>
+
+            <p>
+                Help us improve your learning journey at Uthan Tabla Academy.
+            </p>
+
+        </div>
+
+
+        <form class="box">
+
+            <h3>Personal Information</h3>
+
+            <div class="row">
+
+                <div class="field">
+                    <label>STUDENT NAME *</label>
+                    <input type="text" name="student_name"
+                           placeholder="Your full name" required>
+                </div>
+
+                <div class="field">
+                    <label>EMAIL ADDRESS *</label>
+                    <input type="email" name="email"
+                           placeholder="you@example.com" required>
+                </div>
+
+            </div>
+
+
+            <div class="row">
+
+                <div class="field">
+                    <label>COURSE *</label>
+
+                    <select name="course" required>
+                        <option value="">Select your course</option>
+                        <option>Beginner Tabla</option>
+                        <option>Intermediate Tabla</option>
+                        <option>Advanced Tabla</option>
+                    </select>
+                </div>
+
+
+                <div class="field">
+                    <label>TEACHER *</label>
+
+                    <select name="teacher" required>
+                        <option value="">Select your teacher</option>
+                        <option>Teacher 1</option>
+                        <option>Teacher 2</option>
+                        <option>Teacher 3</option>
+                    </select>
+                </div>
+
+            </div>
+
+
+            <div class="line"></div>
+
+
+            <h3>Overall Experience</h3>
+
+            <p>How would you rate your overall learning experience?</p>
+
+
+            <div class="stars">
+
+                <input type="radio" id="star5" name="overall_rating" value="5" required>
+                <label for="star5">★</label>
+
+                <input type="radio" id="star4" name="overall_rating" value="4">
+                <label for="star4">★</label>
+
+                <input type="radio" id="star3" name="overall_rating" value="3">
+                <label for="star3">★</label>
+
+                <input type="radio" id="star2" name="overall_rating" value="2">
+                <label for="star2">★</label>
+
+                <input type="radio" id="star1" name="overall_rating" value="1">
+                <label for="star1">★</label>
+
+            </div>
+
+
+            <div class="rating">
+
+                <div class="rating-title">
+                    RATE EACH CATEGORY
+                </div>
+
+
+                <div class="rate">
+                    <p>Teaching Quality</p>
+
+                    <input type="radio" id="t1" name="teaching" value="1">
+                    <label for="t1">1 — Poor</label>
+
+                    <input type="radio" id="t2" name="teaching" value="2">
+                    <label for="t2">2 — Fair</label>
+
+                    <input type="radio" id="t3" name="teaching" value="3">
+                    <label for="t3">3 — Good</label>
+
+                    <input type="radio" id="t4" name="teaching" value="4">
+                    <label for="t4">4 — Great</label>
+
+                    <input type="radio" id="t5" name="teaching" value="5">
+                    <label for="t5">5 — Excellent</label>
+                </div>
+
+
+                <div class="rate">
+                    <p>Course Content</p>
+
+                    <input type="radio" id="c1" name="content" value="1">
+                    <label for="c1">1 — Poor</label>
+
+                    <input type="radio" id="c2" name="content" value="2">
+                    <label for="c2">2 — Fair</label>
+
+                    <input type="radio" id="c3" name="content" value="3">
+                    <label for="c3">3 — Good</label>
+
+                    <input type="radio" id="c4" name="content" value="4">
+                    <label for="c4">4 — Great</label>
+
+                    <input type="radio" id="c5" name="content" value="5">
+                    <label for="c5">5 — Excellent</label>
+                </div>
+
+
+                <div class="rate">
+                    <p>Practice Sessions</p>
+
+                    <input type="radio" id="p1" name="practice" value="1">
+                    <label for="p1">1 — Poor</label>
+
+                    <input type="radio" id="p2" name="practice" value="2">
+                    <label for="p2">2 — Fair</label>
+
+                    <input type="radio" id="p3" name="practice" value="3">
+                    <label for="p3">3 — Good</label>
+
+                    <input type="radio" id="p4" name="practice" value="4">
+                    <label for="p4">4 — Great</label>
+
+                    <input type="radio" id="p5" name="practice" value="5">
+                    <label for="p5">5 — Excellent</label>
+                </div>
+
+
+                <div class="rate">
+                    <p>Teacher Support</p>
+
+                    <input type="radio" id="s1" name="support" value="1">
+                    <label for="s1">1 — Poor</label>
+
+                    <input type="radio" id="s2" name="support" value="2">
+                    <label for="s2">2 — Fair</label>
+
+                    <input type="radio" id="s3" name="support" value="3">
+                    <label for="s3">3 — Good</label>
+
+                    <input type="radio" id="s4" name="support" value="4">
+                    <label for="s4">4 — Great</label>
+
+                    <input type="radio" id="s5" name="support" value="5">
+                    <label for="s5">5 — Excellent</label>
+                </div>
+
+
+                <div class="rate">
+                    <p>Learning Environment</p>
+
+                    <input type="radio" id="l1" name="environment" value="1">
+                    <label for="l1">1 — Poor</label>
+
+                    <input type="radio" id="l2" name="environment" value="2">
+                    <label for="l2">2 — Fair</label>
+
+                    <input type="radio" id="l3" name="environment" value="3">
+                    <label for="l3">3 — Good</label>
+
+                    <input type="radio" id="l4" name="environment" value="4">
+                    <label for="l4">4 — Great</label>
+
+                    <input type="radio" id="l5" name="environment" value="5">
+                    <label for="l5">5 — Excellent</label>
+                </div>
+
+            </div>
+
+
+            <div class="line"></div>
+
+
+            <h3>Share Your Experience</h3>
+
+            <label>TELL US ABOUT YOUR EXPERIENCE *</label>
+
+            <textarea name="experience"
+                      placeholder="Share your thoughts about your learning experience..."
+                      required></textarea>
+
+
+            <div class="row">
+
+                <div class="field">
+                    <label>WHAT DID YOU ENJOY THE MOST?</label>
+
+                    <textarea name="enjoyed"
+                              placeholder="Tell us what you enjoyed..."></textarea>
+                </div>
+
+
+                <div class="field">
+                    <label>WHAT CAN WE IMPROVE?</label>
+
+                    <textarea name="improve"
+                              placeholder="Your suggestions help us grow..."></textarea>
+                </div>
+
+            </div>
+
+
+            <label class="check">
+                <input type="checkbox" name="contact">
+                I would like the academy to contact me regarding my feedback.
+            </label>
+
+
+            <button type="submit">
+                Submit Feedback →
+            </button>
+
+            <div class="required">
+                Fields marked with * are required
+            </div>
+
+        </form>
+
+    </div>
+
+
+    <footer>
+
+        <div class="footer-row">
+
+            <div>
+                <h3>Uthan Tabla Academy</h3>
+                <p>
+                    Preserving the living tradition of tabla through<br>
+                    dedicated instruction and a nurturing community.
+                </p>
+            </div>
+
+            <div>
+                <h4>ACADEMY</h4>
+                <p>Courses</p>
+                <p>Gallery</p>
+                <p>Papers</p>
+                <p>About Us</p>
+            </div>
+
+            <div>
+                <h4>CONTACT</h4>
+                <p>
+uthantablaacademy@gmail.com</p>
+                <p>+91 98765 43210</p>
+                <p>
+705, B-wing, Laxmi vishnupuram soc., Deshmukhwadi, Shivane behind kaka halwai pune, India - 411023</p>
+            </div>
+
+        </div>
+
+        <div class="copyright">
+            © 2026 Uthan Tabla Academy. All rights reserved.
+        </div>
+
+    </footer>
+
+</body>
+</html>

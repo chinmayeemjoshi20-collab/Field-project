@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | Uthan Tabla Academy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #150d07;
+      --bg-alt: #1c1209;
+      --card: #221507;
+      --card-border: rgba(244, 236, 224, 0.09);
+      --cream: #f3ece0;
+      --muted: #b3a493;
+      --muted-dim: #8a7c6c;
+      --orange: #cf7d42;
+      --orange-soft: rgba(207, 125, 66, 0.14);
+      --gold: #d7a955;
+      --green: #5c8a6a;
+      --rose: #b35d59;
+      --line: rgba(244, 236, 224, 0.1);
+      --radius: 14px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-image: url("backgroundimg.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: var(--cream);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+    }
+
+    .wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--orange);
+      background: var(--orange-soft);
+      border: 1px solid rgba(207, 125, 66, 0.3);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+
+    /* ---------- Header ---------- */
+    header {
+      background: var(--bg-alt);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1.5px solid var(--orange);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .brand-mark::before {
+      content: "";
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 1.5px solid var(--orange);
+    }
+
+    .brand-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
+
+    .brand-est {
+      font-size: 0.66rem;
+      letter-spacing: 0.12em;
+      color: var(--orange);
+      font-weight: 600;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 34px;
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    .nav-links a {
+      transition: color .2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--cream);
+    }
+
+    .nav-links a.active {
+      color: var(--orange);
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--orange);
+      color: #1a0f05;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 11px 22px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      transition: transform .15s ease, background .2s ease;
+    }
+
+    .btn:hover {
+      background: #dc8b4f;
+      transform: translateY(-1px);
+    }
+
+    /* ---------- Page title / hero ---------- */
+    .page-title {
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      padding: 90px 0 74px;
+      background: radial-gradient(circle at 50% 0%, rgba(207, 125, 66, 0.12), transparent 60%), var(--bg);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .page-title-rings {
+      position: absolute;
+      left: 50%;
+      top: -140px;
+      transform: translateX(-50%);
+      width: 520px;
+      height: 520px;
+      border-radius: 50%;
+      border: 1px solid rgba(244, 236, 224, 0.06);
+      pointer-events: none;
+    }
+
+    .page-title-rings::before,
+    .page-title-rings::after {
+      content: "";
+      position: absolute;
+      inset: 60px;
+      border-radius: 50%;
+      border: 1px solid rgba(244, 236, 224, 0.06);
+    }
+
+    .page-title-rings::after {
+      inset: 140px;
+    }
+
+    .page-title .eyebrow {
+      margin-bottom: 20px;
+    }
+
+    .page-title h1 {
+      font-size: clamp(2.1rem, 4.5vw, 3.1rem);
+      color: var(--cream);
+      max-width: 720px;
+      margin: 0 auto 18px;
+    }
+
+    .page-title p {
+      color: var(--muted);
+      max-width: 52ch;
+      margin: 0 auto;
+      font-size: 1.02rem;
+    }
+
+    .stat-bar {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      flex-wrap: wrap;
+      margin-top: 44px;
+    }
+
+    .stat-bar .stat {
+      text-align: center;
+    }
+
+    .stat-bar .num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.9rem;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .stat-bar .label {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    /* ---------- Section shell ---------- */
+    section.block {
+      padding: 84px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .alt {
+      background: var(--bg-alt);
+    }
+
+    .block-head {
+      max-width: 640px;
+      margin: 0 auto 48px;
+      text-align: center;
+    }
+
+    .block-head.left {
+      margin: 0 0 44px;
+      text-align: left;
+    }
+
+    .block-head .eyebrow {
+      margin-bottom: 16px;
+    }
+
+    .block-head h2 {
+      font-size: clamp(1.7rem, 3vw, 2.2rem);
+      color: var(--cream);
+      margin-bottom: 12px;
+    }
+
+    .block-head p {
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .block-head.center p {
+      max-width: 56ch;
+      margin: 0 auto;
+    }
+
+    /* ---------- About academy ---------- */
+    .about-academy {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    .about-visual {
+      position: relative;
+      border-radius: 20px;
+      background: linear-gradient(160deg, rgba(207, 125, 66, 0.22), rgba(244, 236, 224, 0.03));
+      border: 1px solid var(--card-border);
+      padding: 40px 32px;
+      min-height: 380px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 22px;
+    }
+
+    .about-visual .mark {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      border: 1.5px solid var(--orange);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+    }
+
+    .about-visual h3 {
+      font-size: 1.4rem;
+      color: var(--cream);
+    }
+
+    .about-visual .est {
+      color: var(--orange);
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .about-visual-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 8px;
+    }
+
+    .about-visual-stats div {
+      background: rgba(21, 13, 7, 0.5);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+
+    .about-visual-stats .n {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold);
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+
+    .about-visual-stats .l {
+      color: var(--muted);
+      font-size: 0.78rem;
+      margin-top: 2px;
+    }
+
+    .about-content .section-label {
+      display: block;
+      margin-bottom: 14px;
+    }
+
+    .about-content h2 {
+      font-size: clamp(1.6rem, 3vw, 2.1rem);
+      color: var(--cream);
+      margin-bottom: 18px;
+    }
+
+    .about-content p {
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .about-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ---------- Philosophy cards ---------- */
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .info-card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 30px 24px;
+      text-align: center;
+    }
+
+    .card-icon {
+      width: 52px;
+      height: 52px;
+      margin: 0 auto 18px;
+      border-radius: 50%;
+      background: var(--orange-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+    }
+
+    .info-card h3 {
+      font-size: 1.05rem;
+      color: var(--cream);
+      margin-bottom: 10px;
+    }
+
+    .info-card p {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    /* ---------- Guru (brief) ---------- */
+    .guru-card {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 34px;
+      align-items: center;
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 28px;
+    }
+
+    .guru-photo {
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--card-border);
+    }
+
+    .guru-photo img {
+      aspect-ratio: 1/1;
+      object-fit: cover;
+    }
+
+    .guru-info h3 {
+      font-size: 1.3rem;
+      color: var(--cream);
+      margin-bottom: 4px;
+    }
+
+    .guru-info h4 {
+      font-size: 0.92rem;
+      color: var(--orange);
+      font-weight: 600;
+      margin-bottom: 14px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .guru-info p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+    }
+
+    .guru-info p:last-of-type {
+      margin-bottom: 16px;
+    }
+
+    .guru-facts {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .guru-facts span {
+      font-size: 0.78rem;
+      color: var(--muted);
+      background: rgba(21, 13, 7, 0.5);
+      border: 1px solid var(--card-border);
+      padding: 6px 12px;
+      border-radius: 999px;
+    }
+
+    /* ---------- Vision / Mission ---------- */
+    .vision-mission {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .vision-box,
+    .mission-box {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 34px 32px;
+    }
+
+    .vision-box span,
+    .mission-box span {
+      display: block;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--orange);
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .vision-box h2,
+    .mission-box h2 {
+      font-size: 1.5rem;
+      color: var(--cream);
+      margin-bottom: 14px;
+    }
+
+    .vision-box p,
+    .mission-box p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* ---------- Offer cards ---------- */
+    .offer-container,
+    .activity-container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .activity-container {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .offer-card,
+    .activity {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      border-top: 2px solid var(--orange);
+    }
+
+    .offer-card h3,
+    .activity h3 {
+      font-size: 1.05rem;
+      color: var(--cream);
+      margin-bottom: 10px;
+    }
+
+    .offer-card p,
+    .activity p {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    /* ---------- Footer ---------- */
+    footer {
+      background: var(--bg-alt);
+      border-top: 1px solid var(--line);
+      padding: 64px 0 28px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 48px;
+    }
+
+    .footer-grid h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      color: var(--cream);
+      margin-bottom: 14px;
+    }
+
+    .footer-grid p {
+      color: var(--muted-dim);
+      font-size: 0.9rem;
+      max-width: 34ch;
+    }
+
+    .footer-col-title {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--orange);
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    .footer-links a:hover {
+      color: var(--orange);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--line);
+      padding-top: 24px;
+      text-align: center;
+      color: var(--muted-dim);
+      font-size: 0.82rem;
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 900px) {
+      .wrap {
+        padding: 0 20px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .about-academy {
+        grid-template-columns: 1fr;
+      }
+
+      .card-container {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .guru-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .guru-photo {
+        max-width: 220px;
+        margin: 0 auto;
+      }
+
+      .guru-facts {
+        justify-content: center;
+      }
+
+      .vision-mission {
+        grid-template-columns: 1fr;
+      }
+
+      .offer-container {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .activity-container {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .stat-bar {
+        gap: 34px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <section class="page-title">
+    <div class="page-title-rings"></div>
+    <div class="wrap" style="position:relative;">
+      <span class="eyebrow">Know Our Journey</span>
+      <h1>Uthan Tabla Academy</h1>
+      <p>Preserving tradition, nurturing talent and inspiring the next generation of Indian classical musicians.</p>
+
+      <div class="stat-bar">
+        <div class="stat">
+          <div class="num">1998</div>
+          <div class="label">Academy founded</div>
+        </div>
+        <div class="stat">
+          <div class="num">3</div>
+          <div class="label">Skill levels taught</div>
+        </div>
+        <div class="stat">
+          <div class="num">Global</div>
+          <div class="label">Online sessions offered</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block about-academy wrap">
+    <div class="about-visual">
+      <div class="mark">🥁</div>
+      <div>
+        <div class="est">Since 1998</div>
+        <h3>Uthan Tabla Academy</h3>
+      </div>
+      <div class="about-visual-stats">
+        <div>
+          <div class="n">1998</div>
+          <div class="l">Founded</div>
+        </div>
+        <div>
+          <div class="n">3</div>
+          <div class="l">Levels — beginner to advanced</div>
+        </div>
+        <div>
+          <div class="n">45+</div>
+          <div class="l">Assessment questions</div>
+        </div>
+        <div>
+          <div class="n">1,240+</div>
+          <div class="l">Students tested</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-content">
+      <span class="section-label eyebrow">About the Academy</span>
+      <h2>Where Tradition Meets Passion</h2>
+      <p>Uthan Tabla Academy is dedicated to the teaching, practice and promotion of tabla and Indian classical music.
+        Since 1998, we have built a home in Varanasi for students who want to learn this instrument properly, from the
+        ground up.</p>
+      <p>The academy provides students with a disciplined and encouraging environment where they can understand the
+        fundamentals of tabla, develop their musical abilities, and experience the rich tradition of Indian classical
+        music. Courses run across three levels — beginner, intermediate and advanced — supported by our quiz platform,
+        so students can track their understanding as they progress.</p>
+      <p>Through regular practice, personal guidance and performance opportunities, students are encouraged to grow both
+        as musicians and as individuals.</p>
+    </div>
+  </section>
+
+  <section class="block alt">
+    <div class="wrap">
+      <div class="block-head center">
+        <span class="eyebrow">Our Philosophy</span>
+        <h2>The Values Behind Our Music</h2>
+        <p>Four principles guide every class we teach, from a student's first bol to their concert debut.</p>
+      </div>
+
+      <div class="card-container">
+        <div class="info-card">
+          <div class="card-icon">🥁</div>
+          <h3>Riyaz</h3>
+          <p>Regular practice is the foundation of musical growth and mastery.</p>
+        </div>
+        <div class="info-card">
+          <div class="card-icon">🙏</div>
+          <h3>Guru-Shishya Tradition</h3>
+          <p>We value the traditional relationship between teacher and student.</p>
+        </div>
+        <div class="info-card">
+          <div class="card-icon">🎵</div>
+          <h3>Musical Tradition</h3>
+          <p>We aim to preserve and promote the rich heritage of Indian classical music.</p>
+        </div>
+        <div class="info-card">
+          <div class="card-icon">✨</div>
+          <h3>Discipline</h3>
+          <p>Dedication, patience and discipline are essential parts of every student's musical journey.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="block-head center">
+        <span class="eyebrow">Our Guru</span>
+        <h2>Guided by Experience</h2>
+        <p>A dedicated musician who guides students throughout their musical journey.</p>
+      </div>
+
+      <div class="guru-card">
+        <div class="guru-photo">
+          <img
+            src="Teacher.jpg">
+        </div>
+        <div class="guru-info">
+          <h3>Shri Kartik Bhalerao</h3>
+          <h4>Tabla Artist &amp; Teacher</h4>
+          <p>Shri Kartik Bhalerao is a tabla artist and faculty member at Uthan Tabla Academy, guiding students in the
+            fundamentals and practical aspects of tabla.</p>
+          <p>His teaching focuses on building a strong understanding of taal, laya, technique and disciplined riyaz,
+            drawn from his own years of training and performance.</p>
+          <div class="guru-facts">
+            <span>8+ years teaching</span>
+            <span>Gold Medalist, Pune University</span>
+            <span>MA in Tabla</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block alt">
+    <div class="wrap vision-mission">
+      <div class="vision-box">
+        <span>Our Vision</span>
+        <h2>Preserve. Teach. Inspire.</h2>
+        <p>To preserve the traditional art of tabla and inspire young musicians to explore and appreciate Indian
+          classical music.</p>
+      </div>
+      <div class="mission-box">
+        <span>Our Mission</span>
+        <h2>Learn Through Practice</h2>
+        <p>To provide quality musical education through regular practice, personal guidance, theoretical understanding
+          and performance opportunities.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="block-head center">
+        <span class="eyebrow">What We Offer</span>
+        <h2>Learning at Uthan</h2>
+        <p>A structured path from your first class to the concert stage.</p>
+      </div>
+
+      <div class="offer-container">
+        <div class="offer-card">
+          <h3>Tabla Training</h3>
+          <p>Structured learning from basic to advanced levels.</p>
+        </div>
+        <div class="offer-card">
+          <h3>Taal &amp; Laya</h3>
+          <p>Understanding rhythm, taal and different compositions.</p>
+        </div>
+        <div class="offer-card">
+          <h3>Riyaz Guidance</h3>
+          <p>Developing regular and disciplined practice habits.</p>
+        </div>
+        <div class="offer-card">
+          <h3>Performances</h3>
+          <p>Opportunities for students to gain stage experience.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block alt">
+    <div class="wrap">
+      <div class="block-head center">
+        <span class="eyebrow">Academy Activities</span>
+        <h2>Learning Beyond the Classroom</h2>
+        <p>Music lives outside the practice room too — here's where our students take it.</p>
+      </div>
+
+      <div class="activity-container">
+        <div class="activity">
+          <h3>🎶 Student Performances</h3>
+          <p>Students get opportunities to showcase their musical progress.</p>
+        </div>
+        <div class="activity">
+          <h3>🙏 Gurupoojan</h3>
+          <p>Celebrating the bond between guru, music and students.</p>
+        </div>
+        <div class="activity">
+          <h3>🎼 Annual Concerts</h3>
+          <p>Musical events where students perform on stage.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <h4>Uthan Tabla Academy</h4>
+          <p>Preserving the living tradition of Hindustani tabla through rigorous teaching and inspired performance.</p>
+        </div>
+        <div>
+          <div class="footer-col-title">Quick Links</div>
+          <div class="footer-links">
+            <a href="Homepage.html">Homepage</a>
+            <a href="Gallery.html">Gallery</a>
+            <a href="Quiz.html">Courses  </a>
+            <a href="Enrollmentform.html">Enroll</a>
+            <a href="Feedback.html">Feedback</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-title">Contact</div>
+          <div class="footer-links">
+            <span>705, B-wing, Laxmi vishnupuram soc., Deshmukhwadi, Shivane behind kaka halwai pune, 
+<br>India - 411023</span>
+            <a href=" uthantablaacademy@gmail.com"> uthantablaacademy@gmail.com</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">© 2026 Uthan Tabla Academy. All rights reserved.</div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
