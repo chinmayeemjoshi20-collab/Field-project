@@ -8,33 +8,55 @@
 
 <style>
 
-/* =========================
-   MAIN THEME
-========================= */
-
 * {
     box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
     margin: 0;
     font-family: "Noto Serif Devanagari", "Georgia", serif;
+    color: #3d210d;
+    padding: 35px 15px;
+    position: relative;
+    min-height: 100vh;
+}
 
-    background:
-    url("backgroundimg.jpg");; center top/cover fixed no-repeat;
-  filter:saturate(.82);
+
+/* =========================
+   BACKGROUND IMAGE
+========================= */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+
+    background-image:
         linear-gradient(
             rgba(55, 25, 8, 0.35),
             rgba(55, 25, 8, 0.55)
         ),
-        url("music-theme.jpg");
+        url("backgroundimg.jpg");
 
     background-size: cover;
-    background-position: top center;
+    background-position: center top;
     background-attachment: fixed;
+    background-repeat: no-repeat;
 
-    color: #3d210d;
-    padding: 35px 15px;
+    filter: saturate(.82);
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -3;
+    background: #3a1807;
 }
 
 
@@ -73,12 +95,9 @@ body {
 
 .header h1 {
     margin: 0;
-
     color: #f6d477;
     font-size: 38px;
-
-    text-shadow:
-        0 2px 5px #000;
+    text-shadow: 0 2px 5px #000;
 }
 
 .header p {
@@ -88,7 +107,9 @@ body {
 }
 
 
-/* decorative line */
+/* =========================
+   DECORATIVE LINE
+========================= */
 
 .decor {
     width: 75%;
@@ -110,15 +131,12 @@ body {
 .decor::after {
     content: "✦";
     position: absolute;
-
     left: 50%;
     top: 50%;
-
     transform: translate(-50%, -55%);
 
     background: #63310f;
     padding: 0 10px;
-
     color: #f3d27b;
 }
 
@@ -133,9 +151,7 @@ body {
     z-index: 20;
 
     text-align: center;
-
     padding: 13px;
-
     margin-bottom: 25px;
 
     background: rgba(54, 25, 7, 0.94);
@@ -145,7 +161,8 @@ body {
 
     color: #ead095;
 
-    box-shadow: 0 5px 20px rgba(0,0,0,.45);
+    box-shadow:
+        0 5px 20px rgba(0,0,0,.45);
 }
 
 .score-box span {
@@ -181,9 +198,6 @@ body {
     overflow: hidden;
 }
 
-
-/* decorative corner effect */
-
 .question::before {
     content: "❈";
 
@@ -210,7 +224,6 @@ body {
 
 .option {
     width: 100%;
-
     display: block;
 
     margin: 9px 0;
@@ -222,7 +235,6 @@ body {
     background: rgba(255,245,216,.72);
 
     color: #42240f;
-
     text-align: left;
 
     font-family: inherit;
@@ -253,7 +265,6 @@ body {
 .option.correct {
     background: #b9d99b !important;
     border-color: #47752b !important;
-
     color: #234514 !important;
 
     font-weight: bold;
@@ -265,14 +276,10 @@ body {
 .option.wrong {
     background: #d9957c !important;
     border-color: #873c28 !important;
-
     color: #651d0e !important;
 
     font-weight: bold;
 }
-
-
-/* disabled buttons */
 
 .option:disabled {
     cursor: not-allowed;
@@ -285,7 +292,6 @@ body {
 
 .feedback {
     min-height: 25px;
-
     margin: 15px 0 0;
 
     font-size: 17px;
@@ -330,9 +336,7 @@ body {
 
 #finalResult h2 {
     margin-top: 0;
-
     color: #f5d476;
-
     font-size: 31px;
 }
 
@@ -340,7 +344,6 @@ body {
     margin: 15px 0;
 
     color: #ffd968;
-
     font-size: 48px;
     font-weight: bold;
 }
@@ -356,7 +359,6 @@ body {
 
 .restart {
     margin-top: 18px;
-
     padding: 13px 30px;
 
     border: 1px solid #e6bd62;
@@ -429,9 +431,7 @@ body {
 <div class="container">
 
 
-<!-- =========================
-     HEADER
-========================= -->
+<!-- HEADER -->
 
 <div class="header">
 
@@ -450,9 +450,7 @@ body {
 </div>
 
 
-<!-- =========================
-     SCORE
-========================= -->
+<!-- SCORE -->
 
 <div class="score-box">
 
@@ -463,16 +461,12 @@ body {
 </div>
 
 
-<!-- =========================
-     QUESTIONS
-========================= -->
+<!-- QUESTIONS -->
 
 <div id="quiz"></div>
 
 
-<!-- =========================
-     FINAL RESULT
-========================= -->
+<!-- FINAL RESULT -->
 
 <div id="finalResult">
 
@@ -481,7 +475,9 @@ body {
     <div class="decor"></div>
 
     <div class="final-score">
+
         <span id="finalScore">0</span> / 30
+
     </div>
 
     <p id="finalMessage"></p>
@@ -859,6 +855,7 @@ questions.forEach((question, index) => {
     `;
 
     quiz.appendChild(card);
+
 });
 
 
@@ -873,7 +870,6 @@ function checkAnswer(button, selected, correct) {
 
     const questionCard = button.parentElement;
 
-    /* Stop changing answer */
     if (questionCard.dataset.answered === "true") {
         return;
     }
@@ -894,9 +890,7 @@ function checkAnswer(button, selected, correct) {
     });
 
 
-    /* =========================
-       CORRECT
-    ========================= */
+    /* CORRECT */
 
     if (selected === correct) {
 
@@ -912,9 +906,7 @@ function checkAnswer(button, selected, correct) {
     }
 
 
-    /* =========================
-       WRONG
-    ========================= */
+    /* WRONG */
 
     else {
 
@@ -937,9 +929,7 @@ function checkAnswer(button, selected, correct) {
     answered++;
 
 
-    /* =========================
-       FINISH
-    ========================= */
+    /* FINISH */
 
     if (answered === questions.length) {
 
@@ -973,7 +963,7 @@ function showResult() {
 
         finalMessage.innerHTML =
             "🔥 <b>अद्भुत!</b> Perfect Score!<br>" +
-            "भारतीय संगीत पर आपकी पकड़ शानदार है।";
+            "भारतीय संगीत पर आपकी पकड़ शानदार है.";
 
     }
 
@@ -981,7 +971,7 @@ function showResult() {
 
         finalMessage.innerHTML =
             "🏆 <b>Excellent!</b><br>" +
-            "आपकी तैयारी लगभग Perfect है।";
+            "आपकी तैयारी लगभग Perfect है.";
 
     }
 
@@ -989,7 +979,7 @@ function showResult() {
 
         finalMessage.innerHTML =
             "👏 <b>बहुत बढ़िया!</b><br>" +
-            "थोड़ा सा revision और करें।";
+            "थोड़ा सा revision और करें.";
 
     }
 
@@ -997,7 +987,7 @@ function showResult() {
 
         finalMessage.innerHTML =
             "🎵 <b>अच्छा प्रयास!</b><br>" +
-            "कुछ important topics फिर से revise करें।";
+            "कुछ important topics फिर से revise करें.";
 
     }
 
@@ -1005,12 +995,13 @@ function showResult() {
 
         finalMessage.innerHTML =
             "🪔 <b>कोई बात नहीं!</b><br>" +
-            "Topics revise करें और फिर से कोशिश करें।";
+            "Topics revise करें और फिर से कोशिश करें.";
 
     }
 
 
     result.style.display = "block";
+
 
     result.scrollIntoView({
         behavior: "smooth"
