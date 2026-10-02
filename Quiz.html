@@ -20,13 +20,16 @@ html {
     scroll-behavior: smooth;
 }
 
+/* =====================================================
+   BODY / BACKGROUND
+===================================================== */
+
 body {
     background-color: #120702;
 
-    /* YOUR BACKGROUND IMAGE */
     background-image:
-        linear-gradient(rgba(18, 7, 2, 0.72), rgba(18, 7, 2, 0.72)),
-        url("file:///C:/Users/Admin/Desktop/VSCODE/FP/backgroundimg.jpg");
+        linear-gradient(rgba(18, 7, 2, 0.35), rgba(18, 7, 2, 0.35)),
+        url("backgroundimg.jpg");
 
     background-size: cover;
     background-position: center;
@@ -838,6 +841,7 @@ a {
     <div class="navbar">
 
         <!-- LOGO LINK -->
+
         <a href="index.html" class="logo">
 
             <div class="logo-icon">
@@ -856,21 +860,19 @@ a {
 
         <nav class="navigation">
 
-            <!-- CHANGE THESE href LINKS -->
-
-            <a href="Homepage.html">
+            <a href="index.html">
                 Home
             </a>
 
-            <a href="courses.html">
+            <a href="#.html">
                 Gallery
             </a>
 
-            <a href="teachers.html">
+            <a href="About.html">
                 About
             </a>
 
-            <a href="events.html">
+            <a href="Feedback.html">
                 Feedback
             </a>
 
@@ -883,14 +885,13 @@ a {
 
         <!-- ENROLL LINK -->
 
-        <a href="../Enrollmentform.html" class="enroll-button">
+        <a href="Enrollmentform.html" class="enroll-button">
             Enroll Now
         </a>
 
     </div>
 
 </header>
-
 
 
 <!-- =====================================================
@@ -918,15 +919,18 @@ a {
         </p>
 
         <div class="hero-divider">
+
             <span></span>
+
             <div>✦</div>
+
             <span></span>
+
         </div>
 
     </div>
 
 </section>
-
 
 
 <!-- =====================================================
@@ -981,29 +985,30 @@ a {
 
             <div class="card-separator"></div>
 
-         <!--
-    CHANGE THE LINKS AND NAMES HERE
--->
 
-<select class="start-quiz" onchange="if (this.value) window.location.href=this.value;">
+            <select class="start-quiz"
+                    onchange="if (this.value) window.location.href=this.value;">
 
-    <option value="" selected disabled>
-        Start Quiz →
-    </option>
+                <option value="" selected disabled>
+                    Start Quiz →
+                </option>
 
-    <option value="Prarambhik.html">
-        Prarambhik
-    </option>
+                <option value="Prarambhik.html">
+                    Prarambhik
+                </option>
 
-    <option value="Praveshikapratham.html">
-        Praveshika Pratham
-    </option>
+                <option value="Praveshikapratham.html">
+                    Praveshika Pratham
+                </option>
 
-    <option value="Praveshikapurna.html">
-        Praveshika Purna
-    </option>
+                <option value="Praveshikapurna.html">
+                    Praveshika Purna
+                </option>
 
-</select>
+            </select>
+
+        </article>
+
 
         <!-- INTERMEDIATE QUIZ -->
 
@@ -1048,34 +1053,25 @@ a {
 
             <div class="card-separator"></div>
 
-            <!--
-            CHANGE THIS LINK
-            -->
-            <!-- INTERMEDIATE QUIZ -->
 
-<!--
-    CHANGE THE LINKS AND NAMES HERE
--->
+            <select class="start-quiz"
+                    onchange="if (this.value) window.location.href=this.value;">
 
-<select class="start-quiz"
-        onchange="if (this.value) window.location.href=this.value;">
+                <option value="" selected disabled>
+                    Intermediate Quiz →
+                </option>
 
-    <option value="" selected disabled>
-        Intermediate Quiz →
-    </option>
+                <option value="Madhyama.html">
+                    Madhyama Pratham
+                </option>
 
-    <option value="Madhyama.html">
-        Madhyama Pratham
-    </option>
+                <option value="Madhyamapurna.html">
+                    Madhyama purna
+                </option>
 
-    <option value="Madhyamapurna.html">
-        Madhyama purna
-    </option>
-
-</select>
+            </select>
 
         </article>
-
 
 
         <!-- ADVANCED QUIZ -->
@@ -1122,40 +1118,32 @@ a {
 
             <div class="card-separator"></div>
 
-            <!--
-            CHANGE THIS LINK
-            -->
-          <!-- ADVANCE QUIZ -->
 
-<!--
-    CHANGE THE LINKS AND NAMES HERE
--->
+            <select class="start-quiz"
+                    onchange="if (this.value) window.location.href=this.value;">
 
-<select class="start-quiz"
-        onchange="if (this.value) window.location.href=this.value;">
+                <option value="" selected disabled>
+                    Advanced Quiz →
+                </option>
 
-    <option value="" selected disabled>
-        Advance Quiz →
-    </option>
+                <option value="Visharad1.html">
+                    Visharad Pratham
+                </option>
 
-    <option value="Visharad1.html">
-         Visharad Pratham
-    </option>
+                <option value="Visharad2.html">
+                    Visharad Purna
+                </option>
 
-    <option value="Visharad2.html">
-         Visharad Purna
-    </option>
+                <option value="Alankar.html">
+                    Alankar
+                </option>
 
-    <option value="Alankar.html">
-      Alankar
-    </option>
-
-</select>>
+            </select>
 
         </article>
 
-    </div>
 
+    </div>
 
 
     <!-- =====================================================
@@ -1165,18 +1153,35 @@ a {
     <div class="statistics">
 
         <div class="stat">
+
             <strong>45+</strong>
-            <span>Total Questions</span>
+
+            <span>
+                Total Questions
+            </span>
+
         </div>
 
+
         <div class="stat">
+
             <strong>3</strong>
-            <span>Difficulty Levels</span>
+
+            <span>
+                Difficulty Levels
+            </span>
+
         </div>
 
+
         <div class="stat">
+
             <strong>1,240</strong>
-            <span>Students Tested</span>
+
+            <span>
+                Students Tested
+            </span>
+
         </div>
 
     </div>
@@ -1185,7 +1190,6 @@ a {
     <div class="mandala mandala-bottom"></div>
 
 </section>
-
 
 
 <!-- =====================================================
@@ -1213,7 +1217,6 @@ a {
         </div>
 
 
-
         <!-- QUICK LINKS -->
 
         <div class="footer-column">
@@ -1222,30 +1225,29 @@ a {
                 QUICK LINKS
             </h4>
 
-            <!-- CHANGE THESE LINKS -->
-
-            <a href="courses.html">
+            <a href="Quiz.html">
                 Courses
             </a>
 
-            <a href="teachers.html">
+            <a href="About.html">
                 Teachers
             </a>
-
-            <a href="practice-room.html">
-                Practice Room
+             <a href="#.html">
+                Gallery
+            </a>
+            <a href="https://abgmvm.org/question-paper/">
+                Papers
             </a>
 
-            <a href="quiz.html">
-                Quiz
+            <a href="Enrollmentform.html">
+                Enroll
             </a>
 
-            <a href="events.html">
-                Events
+            <a href="Feedback.html">
+                Feedback
             </a>
 
         </div>
-
 
 
         <!-- CONTACT -->
@@ -1260,8 +1262,6 @@ a {
                 Varanasi, Uttar Pradesh<br>
                 India 221001
             </p>
-
-            <!-- CHANGE EMAIL -->
 
             <a href="mailto:info@uthantabla.com">
                 info@uthantabla.com
