@@ -14,20 +14,40 @@
 
 body {
     margin: 0;
-    font-family: "Segoe UI", Arial, sans-serif;
+    font-family: "Noto Serif Devanagari", "Georgia", serif;
+    color: #3d210d;
+    padding: 35px 15px;
+    position: relative;
+    min-height: 100vh;
+}
 
-    background:
-    url("file:///C:/Users/Admin/Desktop/VSCODE/FP/backgroundimg.jpg");; center top/cover fixed no-repeat;
-  filter:saturate(.82);
-        linear-gradient(rgba(45, 25, 10, 0.72), rgba(45, 25, 10, 0.72)),
-        url("music-theme.jpg");
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+
+    background-image:
+        linear-gradient(
+            rgba(55, 25, 8, 0.35),
+            rgba(55, 25, 8, 0.55)
+        ),
+        url("backgroundimg.jpg");
 
     background-size: cover;
-    background-position: center;
+    background-position: center top;
     background-attachment: fixed;
+    background-repeat: no-repeat;
 
-    color: #3b2414;
-    padding: 20px;
+    filter: saturate(.82);
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -3;
+    background: #3a1807;
 }
 
 /* HEADER */
