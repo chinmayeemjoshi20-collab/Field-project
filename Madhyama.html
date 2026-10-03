@@ -14,31 +14,41 @@
 
 body {
     margin: 0;
+    font-family: "Noto Serif Devanagari", "Georgia", serif;
+    color: #3d210d;
     padding: 35px 15px;
+    position: relative;
+    min-height: 100vh;
+}
 
-    font-family: "Noto Serif Devanagari", Georgia, serif;
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
 
-    background:
-    url("file:///C:/Users/Admin/Desktop/VSCODE/FP/backgroundimg.jpg");; center top/cover fixed no-repeat;
-  filter:saturate(.82);
+    background-image:
         linear-gradient(
             rgba(55, 25, 8, 0.35),
             rgba(55, 25, 8, 0.55)
         ),
-        url("music-theme.jpg");
+        url("backgroundimg.jpg");
 
     background-size: cover;
-    background-position: top center;
+    background-position: center top;
     background-attachment: fixed;
+    background-repeat: no-repeat;
 
-    color: #3d210d;
+    filter: saturate(.82);
 }
 
-.container {
-    max-width: 900px;
-    margin: auto;
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -3;
+    background: #3a1807;
 }
-
 
 /* HEADER */
 
